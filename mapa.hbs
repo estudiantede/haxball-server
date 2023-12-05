@@ -18,12 +18,12 @@
     "traits" : {
         
         "goalPost" : { "radius" : 6, "invMass" : 0, "bCoef" : 0.5 },
-        "borders" : {"vis": true, "cGroup" : ["wall", "ball"], "cMask" : ["ball"], "color" : "FFFFFF", "bCoef" : 0.98},
+        "borders" : {"vis": true, "cGroup" : ["wall", "ball"], "cMask" : ["ball"], "color" : "FFFFFF", "bCoef" : 0.71},
         "bordersInv" : {"vis": false, "cGroup" : ["wall", "ball"], "cMask" : ["ball"], "color" : "FFFFFF", "bCoef" : 0.98},
         "kickOffBarrier" : { "vis" : true, "bCoef" : 0.1, "cGroup" : ["redKO", "blueKO"], "cMask" : ["red", "blue"], "color" : "FFFFFF"},
         "kickOffBlue" : { "vis" : true, "bCoef" : 0.1, "cGroup" : ["blueKO"], "cMask" : ["red", "blue"], "color" : "FFFFFF"},
         "kickOffRed" : { "vis" : true, "bCoef" : 0.1, "cGroup" : ["redKO"], "cMask" : ["red", "blue"], "color" : "FFFFFF"},
-        "goalNet" : {"vis" : true, "bCoef" : 0.2, "cGroup" : ["all"], color: "DDDDDD"},
+        "goalNet" : {"vis" : true, "bCoef" : 0.1, "cGroup" : ["all"], color: "DDDDDD"},
         "area" : {"vis" : true, "cGroup" : [""], "cMask" : [""], "color" : "CCCCCC"},
         "ballArea" : { "vis" : false, "bCoef" : 10, "cMask" : ["ball"] },
     },
@@ -45,18 +45,18 @@
         /* 7 */ {"x" : 0, "y" : -60, "trait" : "kickOffBarrier"},  //Middle little top
     
     /* Goals vertexes */
-        /* 8 */ {"x" : -500, "y" : -80},  //Goal top left 
-        /* 9 */ {"x" : -500, "y" : 80},   //Goal bottom left
-        /* 10 */ {"x" : 500, "y" : -80},  //Goal top right 
-        /* 11 */ {"x" : 500, "y" : 80},   //Goal bottom right
+        /* 8 */ {"x" : -500, "y" : -75},  //Goal top left 
+        /* 9 */ {"x" : -500, "y" : 75},   //Goal bottom left
+        /* 10 */ {"x" : 500, "y" : -75},  //Goal top right 
+        /* 11 */ {"x" : 500, "y" : 75},   //Goal bottom right
         
     /* Net post right*/
-        /* 12 */ {"x" : 540, "y" : 80},   //Net bottom right 
-        /* 13 */ {"x" : 540, "y" : -80},   //Net top right 
+        /* 12 */ {"x" : 540, "y" : 75},   //Net bottom right 
+        /* 13 */ {"x" : 540, "y" : -75},   //Net top right 
 
     /* Net post left*/
-        /* 14 */ {"x" : -540, "y" : 80},   //Net bottom right 
-        /* 15 */ {"x" : -540, "y" : -80},   //Net top right 
+        /* 14 */ {"x" : -540, "y" : 75},   //Net bottom right 
+        /* 15 */ {"x" : -540, "y" : -75},   //Net top right 
 
     /* Left area */
         /* 16 */ {"x" : -420, "y" : -120, "trait" : "area"},   //Area top left 
@@ -91,42 +91,42 @@
 
     /* REINFORCMENT */
         /* 36 */ {"x" : -502, "y" : -220, "trait" : "area"},
-        /* 37 */ {"x" : -502, "y" : -80, "trait" : "area"},
+        /* 37 */ {"x" : -502, "y" : -75, "trait" : "area"},
 
         
         /* 38 */ {"x" : -502, "y" : 220, "trait" : "area"},
-        /* 39 */ {"x" : -502, "y" : 80, "trait" : "area"},
+        /* 39 */ {"x" : -502, "y" : 75, "trait" : "area"},
 
         /* 40 */ {"x" : -504, "y" : -220, "trait" : "area"},
-        /* 41 */ {"x" : -504, "y" : -80, "trait" : "area"},
+        /* 41 */ {"x" : -504, "y" : -75, "trait" : "area"},
 
         /* 42 */ {"x" : -504, "y" : 220, "trait" : "area"},
-        /* 43 */ {"x" : -504, "y" : 80, "trait" : "area"},
+        /* 43 */ {"x" : -504, "y" : 75, "trait" : "area"},
 
         /* 44 */ {"x" : -506, "y" : -220, "trait" : "area"},
-        /* 45 */ {"x" : -506, "y" : -80, "trait" : "area"},
+        /* 45 */ {"x" : -506, "y" : -75, "trait" : "area"},
 
         /* 46 */ {"x" : -506, "y" : 220, "trait" : "area"},
-        /* 47 */ {"x" : -506, "y" : 80, "trait" : "area"},
+        /* 47 */ {"x" : -506, "y" : 75, "trait" : "area"},
 
         /* 48 */ {"x" : 502, "y" : -220, "trait" : "area"},
-        /* 49 */ {"x" : 502, "y" : -80, "trait" : "area"},
+        /* 49 */ {"x" : 502, "y" : -75, "trait" : "area"},
 
         
         /* 50 */ {"x" : 502, "y" : 220, "trait" : "area"},
-        /* 51 */ {"x" : 502, "y" : 80, "trait" : "area"},
+        /* 51 */ {"x" : 502, "y" : 75, "trait" : "area"},
 
         /* 52 */ {"x" : 504, "y" : -220, "trait" : "area"},
-        /* 53 */ {"x" : 504, "y" : -80, "trait" : "area"},
+        /* 53 */ {"x" : 504, "y" : -75, "trait" : "area"},
 
         /* 54 */ {"x" : 504, "y" : 220, "trait" : "area"},
-        /* 55 */ {"x" : 504, "y" : 80, "trait" : "area"},
+        /* 55 */ {"x" : 504, "y" : 75, "trait" : "area"},
 
         /* 56 */ {"x" : 506, "y" : -220, "trait" : "area"},
-        /* 57 */ {"x" : 506, "y" : -80, "trait" : "area"},
+        /* 57 */ {"x" : 506, "y" : -75, "trait" : "area"},
 
         /* 58 */ {"x" : 506, "y" : 220, "trait" : "area"},
-        /* 59 */ {"x" : 506, "y" : 80, "trait" : "area"}
+        /* 59 */ {"x" : 506, "y" : 75, "trait" : "area"}
 	],
 
     "segments" : [
@@ -202,12 +202,12 @@
 
     "discs" : [
         /* Right disc*/
-		{"pos" : [500, 80], "color" : "FFFFFF", "trait" : "goalPost"},
-        {"pos" : [500, -80], "color" : "FFFFFF", "trait" : "goalPost"},
+		{"pos" : [500, 75], "color" : "FFFFFF", "trait" : "goalPost"},
+        {"pos" : [500, -75], "color" : "FFFFFF", "trait" : "goalPost"},
 
         /* Left disc*/
-        {"pos" : [-500, 80], "color" : "FFFFFF", "trait" : "goalPost"},
-        {"pos" : [-500, -80], "color" : "FFFFFF", "trait" : "goalPost"},
+        {"pos" : [-500, 75], "color" : "FFFFFF", "trait" : "goalPost"},
+        {"pos" : [-500, -75], "color" : "FFFFFF", "trait" : "goalPost"},
 	],
 
     "planes" : [
@@ -224,9 +224,9 @@
        "pos" : [0,0],
        // "gravity" : 
         "radius" : 6,
-        "invMass" : 1.2,
+        "invMass" : 1.76,
         "color" : "FFFF00",
-        "bCoef " : 0.2,
+        "bCoef " : 0.4,
         "damping" : 0.99,
     },
 
@@ -234,10 +234,10 @@
         "bCoef" : 0.5,
 	    "invMass" : 0.5,
 	    "damping" : 0.95,
-	    "acceleration" : 0.13,
-	    "kickingAcceleration" : 0.08,
+	    "acceleration" : 0.12,
+	    "kickingAcceleration" : 0.095,
 	    "kickingDamping" : 0.93,
-	    "kickStrength" : 5
+	    "kickStrength" : 3.6
     },
 
     

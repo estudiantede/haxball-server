@@ -36,11 +36,7 @@
         'Le molesto la luz. No se puede jugar con la luz apagada principe',
         'Fabianni ta ta ta, Fabianii... NOOOOO Fabianni era el gol de la fecha' 
     ]
-/*
-        [],
-        [],
-        [],
-*/
+
     
     const camis = [
 
@@ -64,156 +60,182 @@
         [180, 0x000000, 0xFF7F00, 0xFF7F00, 0xFF7F00],
         [90, 0x000000, 0xFF0000, 0xFFFFFF, 0xFF0000],
         [0, 0xFFFCFC, 0x090980],
-        [],
+
+        /* Equipos italianos */
+        [0, 0xFFE600, 0x000000, 0XFFFFFF, 0x000000],
+        [0, 0xFFFFFF, 0x0099FF],
+        [0, 0xFFF700, 0x940000],
+        [0, 0xFFFFFF, 0x001E94, 0x000000, 0x001E94],
+        [0, 0xFFFFFF, 0xE80000, 0x000000, 0xE80000],
+        [0, 0xFFFFFF, 0xB00000, 0x001E94],
+
+        /* Eqiupos ingleses*/
+        [90, 0xFFFFFF, 0x0027A6],
+        [90, 0xFFFFFF, 0xE80000],
+        [90, 0x000000, 0x00BEE3],
+        [90, 0xFFFFFF, 0xFF0000],
+        [90, 0xFFFFFF, 0x0039BF],
+
+        /* Equipos alemanes */
+        [0, 0xFFFFFF, 0xFF0000, 0x002EAD, 0xFF0000],
+        [0, 0x000000, 0xFFFF00],
+        [90, 0xFFFFFF, 0x000000, 0xFF0000, 0x000000],
+        [90, 0xFFFFFF, 0x0037EB],
+
+        /* Equipos españoles */
+        [90, 0xF7FF00, 0x000073, 0x800000, 0x000073],
+        [0, 0x000000, 0xFFFFFF],
+        [0, 0x0A0063, 0xE80000, 0xFFFAFA, 0xE80000],
+        [0, 0x000000, 0xE80000, 0xFFFAFA, 0xE80000],
+        [0, 0x000000, 0x00DE3B, 0xFFFAFA, 0x00DE3B],
+        [0, 0x000000, 0xFFFFFF, 0x0016DB, 0xFFFFFF],
+        [0, 0x000000, 0xFFFFFF, 0x0083DB, 0xFFFFFF],
+        [0, 0x000000, 0xFFFFFF, 0xFF0000, 0xFFFFFF],
+        [0, 0x000000, 0xFFFFFF],
+
+        /* Equipos argentinos */
+        [90, 0xFFFFFF, 0x006BD4, 0xE0F000, 0x006BD4],
+        [60, 0x000000, 0xFFFFFF, 0xFA0000, 0xFFFFFF],
+        [0,0x000000, 0x0088FF, 0xFAFAFA, 0x0088FF],
+        [60, 0xFFFFFF, 0xFF0000, 0xBD0000, 0xFF0000],
+        [0, 0xFFFFFF, 0x00002E, 0xFF0000, 0x00002E],
+        [0, 0xEB0000, 0xFFFFFF],
+        [0, 0x000000, 0xFF0000, 0xFFFFFF, 0xFF0000],
+        [90, 0xFFFFFF, 0xFFFFFF, 0x00159C, 0xFFFFFF],
+        [0, 0xFFFFFF, 0x001CA6, 0xFFF700, 0x001CA6],
+        [0, 0xFFFFFF, 0xFF0000, 0x000000],
+        [120, 0x000000, 0xFF0000, 0xFFFFFF, 0xFF0000],
+        [90, 0xFFFFFF, 0xFFFFFF, 0x000C59, 0xFFFFFF],
+        [0, 0x000000, 0xFFFFFF, 0x00B035, 0xFFFFFF],
+        [60, 0xFFFFFF, 0x590801],
+        [60, 0xFFFFFF, 0x00E5FF],
+        [60, 0x02003D, 0xFFFFFF],
+        [90, 0xFFFFFF, 0x0010EB, 0xFF0000, 0x0010EB],
+        [0, 0xFFFFFF, 0xFF0000, 0x000000],
+        [0, 0x000000, 0xFF0000, 0xFFFFFF, 0xFF0000],
+        [0, 0x000000, 0xF7FF00, 0x006E0B, 0xF7FF00],
+        [0, 0x000000, 0xF7FF00],
+        [0, 0x000000, 0xF7FF00],
+        [0, 0xFFFFFF, 0x002CD9],
+        [0, 0xFFFF00, 0x00E636],
+        [60, 0xFFFFFF, 0x00E5FF],
+        [0, 0xFFFFFF, 0x00800D, 0x000000, 0x00800D],
+        [0, 0xFFFFFF, 0xD10000, 0x007BD9, 0xD10000],
+        [0, 0x000000, 0x00D6DE, 0xFFFFFF, 0x00D6DE],
+        [0, 0xFFFFFF, 0x00800D, 0x000000, 0x00800D],
+        [0, 0x000000, 0xEEFF00, 0xFFA200],
+        [0, 0xFFFFFF, 0xFFFFFF, 0x010019, 0xFFFFFF],
+        [0, 0x000000, 0xFF0000, 0xFFFFFF, 0xFF0000],
+        [0, 0x000000, 0xFFFFFF],
+        [0, 0xFFFFFF, 0x003694, 0x000000, 0x003694],
+        [0, 0xFFFFFF, 0xF0E000, 0x003694, 0xF0E000],
+        [0, 0xFFFFFF, 0xF00000, 0x000000, 0xF00000],
+        [0, 0x000000, 0x00D6DE, 0xFFFFFF, 0x00D6DE],
+        [0, 0x000000, 0xFF0000, 0xFFFFFF, 0xFF0000],
+        [0, 0xFFFFFF, 0xF0F000, 0xFF0000, 0xF0F000],
+        [0, 0xFFFFFF, 0xF00000, 0x000000, 0xF00000],
+        [0, 0xFFFFFF, 0x00BA2C, 0x009623],
+        [0, 0x000000, 0xFF0000, 0xFFFFFF, 0xFF0000],
+        [0, 0x000000, 0xFF0000, 0xFFFFFF, 0xFF0000],
+        [0, 0xFFFFFF, 0xF0F000, 0x000000, 0xF0F000],
+        [90, 0xFFFFFF, 0xFFFFFF, 0x210C00, 0xFFFFFF],
+        [0, 0xFFFFFF, 0xFFFFFF, 0x000000, 0xFFFFFF],
+        [60, 0x000000, 0x120082, 0xFFFFFF, 0x120082]
     ]
-      /*
-Canada Bandeira - /colors red 90 000000 FF0000 FFFFFF FF0000 Parece la bandera de austria 0/10 
-Japon: /colors blue 0 FFFCFC 090980 (parece la de francia) sin calfiicacion 
-
-Italia
-Juventus: /colors red 0 FFE600 000000 FFFFFF 000000 10/10
-Napoli: /colors blue 0 FFFFFF 0099FF 9/10
-
-Roma: /colors red 0 FFF700 940000 7/10
-
-Inter: /colors blue 0 FFFFFF 001E94 000000 001E94 8,5/10
-
-Milan: /colors red 0 FFFFFF E80000 000000 E80000 10/10
-
-Genoa: /colors red 0 FFFFFF B00000 001E94 6/10 (le falta un azul mas oscuro) 
-Inglaterra
-Leicester City: /colors blue 90 FFFFFF 0027A6 7,5/10
-
-Manchester United: /colors red 90 FFFFFF E80000 6/10
-
-Manchester City: /colors blue 90 000000 00BEE3 5/10 (confusa)
-
-Arsenal: /colors red 90 FFFFFF FF0000 1/10 Igual a la de m.united
-
-Chelsea: /colors blue 90 FFFFFF 0039BF Igual a la de leicester city 
-max-fb — Yesterday at 10:03 PM
-Alemania
-Bayern Munich: /colors red 00 FFFFFF FF0000 002EAD FF0000 (parece un tq a la del barcelona pero) 8,9/10
-
-Borussia Dortmund: /colors red 00 000000 FFFF00 8/10 (le faltaria para mi un negro para diferenciar)
-
-
-Bayer Leverkusen: /colors red 90 FFFFFF 000000 FF0000 000000 10/10
-
-Schalke 04: /colors blue 90 FFFFFF 0037EB (igual a la del chelsea y leicester city) 
-España
-Barcelona: /colors red 90 F7FF00 000073 800000 000073 10/10
-
-Real Madrid: /colors red 0 000000 FFFFFF (le agregaria algo amarillo) 8/10
-
-Atletico Madrid: /colors red 00 0A0063 E80000 FFFAFA E80000 (parece la bandera de peru xd) sin calificacion
-
-Athletic Club: /colors red 00 000000 E80000 FFFAFA E80000 es igual a la del atletico madrid 
-
-Real Betis: /colors red 00 000000 00DE3B FFFAFA 00DE3B un verde un tq mas oscuro le daria 7,9/10
-
-Espanyol: /colors blue 00 000000 FFFFFF 0016DB FFFFFF 8/10
-
-Malaga: /colors blue 00 000000 FFFFFF 0083DB FFFFFF es casi lo mismo que el espanyol pero mas claro el azul
-
-Sevilla: /colors red 00 000000 FFFFFF FF0000 FFFFFF Camiseta antigua por lo que veo
-
-Valencia: /colors red 0 000000 FFFFFF es correcta pero le agregaria un toque de negro 
-Argentina
-Boca Juniors: /colors blue 90 FFFFFF 006BD4 E0F000 006BD4
-
-River Plate: /colors red 60 000000 FFFFFF FA0000 FFFFFF
-
-Racing Club: /colors blue 0 000000 0088FF FAFAFA 0088FF
-
-Independiente: /colors red 60 FFFFFF FF0000 BD0000 FF0000
-
-San Lorenzo: /colors blue 0 FFFFFF 00002E FF0000 00002E
-
-Huracan: /colors red 0 EB0000 FFFFFF
-
-Estudiantes: /colors red 0 000000 FF0000 FFFFFF FF0000
-
-Gimnasia: /colors blue 90 FFFFFF FFFFFF 00159C FFFFFF
-
-Rosario Central: /colors blue 0 FFFFFF 001CA6 FFF700 001CA6
-
-Newell's Old Boys: /colors red 0 FFFFFF FF0000 000000
-
-Argentinos Juniors: /colors red 120 000000 FF0000 FFFFFF FF0000
-
-Velez: /colors blue 90 FFFFFF FFFFFF 000C59 FFFFFF
-
-Banfield: /colors blue 0 000000 FFFFFF 00B035 FFFFFF
-Lanus: /colors red 60 FFFFFF 590801
-
-Belgrano: /colors blue 60 FFFFFF 00E5FF
-
-Quilmes: /colors blue 60 02003D FFFFFF
-
-Tigre: /colors blue 90 FFFFFF 0010EB FF0000 0010EB
-
-Colon: /colors red 0 FFFFFF FF0000 000000
-
-Union: /colors red 0 000000 FF0000 FFFFFF FF0000
-
-Aldosivi: /colors blue 0 000000 F7FF00 006E0B F7FF00
-
-Olimpo: /colors blue 0 000000 F7FF00
-
-Defensa y Justicia: /colors blue 0 000000 F7FF00
-
-Godoy Cruz: /colors blue 0 FFFFFF 002CD9
-
-Sarmiento (J): /colors blue 0 FFFF00 00E636
-
-Temperley: /colors blue 60 FFFFFF 00E5FF
-
-Nueva Chicago: /colors blue 0 FFFFFF 00800D 000000 00800D
-
-Arsenal de Sarandi: /colors red 0 FFFFFF D10000 007BD9 D10000
-
-Atletico de Rafaela: /colors blue 0 000000 00D6DE FFFFFF 00D6DE
-
-San Martin (SJ): /colors blue 0 FFFFFF 00800D 000000 00800D
-
-Crucero del Norte: /colors blue 0 000000 EEFF00 FFA200
-
-Talleres de Cordoba: /colors blue 0 FFFFFF FFFFFF 010019 FFFFFF
-
-Talleres (RdE): /colors red 0 000000 FF0000 FFFFFF FF0000
-
-All Boys: /colors red 0 000000 FFFFFF
-
-Almagro: /colors blue 0 FFFFFF 003694 000000 003694
-
-Atlanta: /colors blue 0 FFFFFF F0E000 003694 F0E000
-
-Patronato: /colors red 0 FFFFFF F00000 000000 F00000
-
-Atl. Tucuman: /colors blue 0 000000 00D6DE FFFFFF 00D6DE
-Atl. Parana: /colors red 0 000000 FF0000 FFFFFF FF0000
-
-Boca Unidos: /colors red 0 FFFFFF F0F000 FF0000 F0F000
-
-Chacarita: /colors red 0 FFFFFF F00000 000000 F00000
-
-Ferro: /colors blue 0 FFFFFF 00BA2C 009623
-
-Instituto: /colors red 0 000000 FF0000 FFFFFF FF0000
-
-Los Andes: /colors red 0 000000 FF0000 FFFFFF FF0000
-
-Santamarina: /colors red 0 FFFFFF F0F000 000000 F0F000
-
-Platense: /colors red 90 FFFFFF FFFFFF 210C00 FFFFFF
-
-Estudiantes (BA): /colors red 0 FFFFFF FFFFFF 000000 FFFFFF
-
-Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
-
-        */
-
+    
+
+    const indexCamis = new Map([
+        ["argentina", 0],
+        ["argentina-s", 1],
+        ["brasil", 2],
+        ["brasil-s", 3],
+        ["estados unidos", 4],
+        ["estados unidos-s", 5],
+        ["italia", 6],
+        ["italia-s", 7],
+        ["turquia", 8],
+        ["turquia-s", 9],
+        ["polonia", 10],
+        ["polonia-s", 11],
+        ["inglaterra", 12],
+        ["inglaterra-s", 13],
+        ["alemania", 14],
+        ["holanda-b", 15],
+        ["holanda", 16],
+        ["canada-b", 17],
+        ["japon", 18],
+        ["juventus", 19],
+        ["napoli", 20],
+        ["roma", 21],
+        ["inter", 22],
+        ["milan", 23],
+        ["genoa", 24],
+        ["leicester", 25],
+        ["manchester united", 26],
+        ["manchester city", 27],
+        ["arsenal", 28],
+        ["chelsea", 29],
+        ["bayern munich", 30],
+        ["borussia dortumund", 31],
+        ["bayer leverkusen", 32],
+        ["schalke 04", 33],
+        ["barcelona", 34],
+        ["real madrid", 35],
+        ["atletico madrid", 36],
+        ["athletic club", 37],
+        ["real betis", 38],
+        ["espanyol", 39],
+        ["malaga", 40],
+        ["sevilla", 41],
+        ["valencia", 42],
+        ["boca juniors", 43],
+        ["river plate", 44],
+        ["racing club", 45],
+        ["independiente", 46],
+        ["san lorenzo", 47],
+        ["huracan", 48],
+        ["estudiantes", 49],
+        ["gimnasia", 50],
+        ["rosario central", 51],
+        ["newell's", 52],
+        ["argentinos juniors", 53],
+        ["velez", 54],
+        ["banfield", 55],
+        ["lanus", 56],
+        ["belgrano", 57],
+        ["quilmes", 58],
+        ["tigre", 59],
+        ["colon", 60],
+        ["union", 61],
+        ["aldosivi", 62],
+        ["olimpo", 63],
+        ["defensa y justicia", 64],
+        ["godoy cruz", 65],
+        ["sarmiento", 66],
+        ["temperley", 67],
+        ["nueva chicago", 68],
+        ["arsenal", 69],
+        ["atletico de rafaela", 70],
+        ["san martin de san juan", 71],
+        ["crucero del norte", 72],
+        ["talleres de cordoba", 73],
+        ["talleres de remedios de escalada", 74],
+        ["all boys", 75],
+        ["almagro", 76],
+        ["atlanta", 77],
+        ["patronato", 78],
+        ["atletico tucuman", 79],
+        ["atletico parana", 80],
+        ["boca unidos", 81],
+        ["chacarita", 82],
+        ["ferro", 83],
+        ["instituto", 84],
+        ["los andes", 85],
+        ["santamarina", 86],
+        ["platense", 87],
+        ["estudiantes de caseros", 88],
+        ["alvarado", 89]
+      ]);
 
     /* STADIUM */
 
@@ -443,9 +465,9 @@ Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
            "pos" : [0,0],
            // "gravity" : 
             "radius" : 6,
-            "invMass" : 1.2,
+            "invMass" : 1.5,
             "color" : "FFFF00",
-            "bCoef " : 0.2,
+            "bCoef " : 0.4,
             "damping" : 0.99,
         },
     
@@ -453,10 +475,10 @@ Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
             "bCoef" : 0.5,
             "invMass" : 0.5,
             "damping" : 0.95,
-            "acceleration" : 0.13,
-            "kickingAcceleration" : 0.08,
+            "acceleration" : 0.12,
+            "kickingAcceleration" : 0.09,
             "kickingDamping" : 0.93,
-            "kickStrength" : 5
+            "kickStrength" : 4.87
         },
     
         
@@ -487,6 +509,19 @@ Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
     room.setCustomStadium(stadium)
 
     /* FUNCTIONS */
+
+    function isNumeric(value) {
+        return /^-?\d+$/.test(value);
+    }
+
+    function is_letters_and_spaces(str){
+        var regex = /^[a-zA-Z ]+$/;
+        if(regex.test(str)){
+            return true
+        }else{
+            return false
+        }
+    }
 
     function deleteIndex(arr, value) {
         var index = arr.indexOf(value);
@@ -546,7 +581,7 @@ Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
     //    updateTeams();
     //    for (var i = 0; i < players.length; i++) {
     //        if (players[i].position != null) {
-    //            var distanceToBall = pointDistance(players[i].position, ballPosition);
+    //            var distanceToBamoll = pointDistance(players[i].position, ballPosition);
     //            if (distanceToBall < triggerDistance) {
     //                !activePlay ? activePlay = true : null;
     //                if (lastTeamTouched == players[i].team && lastPlayersTouched[0] != null && lastPlayersTouched[0].id != players[i].id) {
@@ -560,7 +595,7 @@ Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
     //}
 
     function moveJug(team) {
-        for (let i = 0; i < 4; i++) {
+        for (let i = Players_team[team]; i < 3; i++) {
             room.setPlayerTeam(Players_team[0][i], team)
         }
     }
@@ -569,7 +604,7 @@ Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
         //Se ejecuta solo en el equipo que perdio
         for (let i = 0; i < player_on_game[team_loser - 1].length; i++) {
             //Si todavía esta en el equipo, se mueve a spec
-            if (Players_team(team_loser).indexOf(player_on_game[team_loser - 1][i]) != -1) {
+            if (Players_team[team_loser].indexOf(player_on_game[team_loser - 1][i]) != -1) {
                 room.setPlayerTeam(player_on_game[team_loser - 1][i], 0)
             }
         }
@@ -725,13 +760,11 @@ Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
                     break;
                 case "stop":
                     if (admins.indexOf(player.id) != -1) {
-
+                        room.stopGame()
                     } 
                     else {
                         room.sendAnnouncement("You've not the rights to do that", player.id);
                     }
-
-                    room.sendAnnouncement("You've not the rights to execute this command", player.id)
                     break;
                 case "pause":
                     if (admins.indexOf(player.id) != -1) {
@@ -783,6 +816,28 @@ Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
                         if(words.length == 1 || words.length == 2) {
                             room.sendAnnouncement("Mostrar camisetas y explicar como tiene que escribir el comando", player.id);
                         } else if(words.length == 3) {
+                            if (isNumeric(words[1]) == true && isNumeric(words[2]) == true) {
+                                teamColorSeleccionado = parseInt(words[1])
+                                team_sel = parseInt(words[2])
+                                colors = camis[team_sel].slice(2)
+                                room.setTeamColors(teamColorSeleccionado, camis[team_sel][0], camis[team_sel][1], colors)
+                                console.log(camis)
+                            }
+                            else if (isNumeric(words[1]) == true && is_letters_and_spaces(words[2]) == true) {
+                                teamColorSeleccionado = parseInt(words[1])
+                                if (indexCamis.has(words[2]) == true) {
+                                    team_sel = indexCamis.get(words[2])
+                                    colors = camis[team_sel].slice(2)
+                                    room.setTeamColors(teamColorSeleccionado, camis[team_sel][0], camis[team_sel][1], colors)
+                                }
+                                else {
+                                    room.sendAnnouncement("There's no team with this particular name", player.id);
+                                }
+
+                            }
+                            else {
+                                room.sendAnnouncement("The arguments must be numbers", player.id);
+                            }
                             room.sendAnnouncement("Se aplica la camiseta seleccionada", player.id);
                         } else if (words.length >= 5) {
                             room.sendAnnouncement("Se aplica la camiseta seleccionada", player.id);
@@ -819,14 +874,19 @@ Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
         room.stopGame()
         if(scores.red > scores.blue) {
             room.sendAnnouncement("Congratulations to red for the victory")
-            moveSpec(1)
+            moveSpec(2)
+            setTimeout(() => {
+                moveJug(2)
+              }, "2000");
             
         }
         else {
             room.sendAnnouncement("Congratulations to blue for the victory")
-            moveSpec(2)
+            moveSpec(1)
+            setTimeout(() => {
+                moveJug(1)
+              }, "2000");
         }
-        moveJug()
     }
 
     room.onPlayerAdminChange = function(changedPlayer, byPlayer) {
@@ -848,167 +908,4 @@ Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
     */
 
 
-        /*
-
-    /colors red 180 333A3C EFF6FC BBE3F4 EFF6FC  ARGENTINA TITULAR  CALIFICACION 8/10 
-ARGENTINA SUPLENTE: /colors blue 60 FCFDFD 2D3135  CALIFICACION :5/10 
-BRASIL TITULAR /colors red 220 038434 F8DD2E 10/10 
-BRASIL SUPLENTE /colors red 180 FFFFFF 2A4B9B 8/10 
-ESTADOS UNIDOS TITULAR /colors red 180 000000 7A7DBB FFFFFF 7A7DBB 3/10 
-ESTADOS UNIDOS SUPLENTE /colors red 180 FFFFFF 283170 000000 B21917 5/10 
-ITALIA TITULAR /colors red 180 d4ba91 2D4E9D Igualita A la de brasil suplente 8/10 
-ITALIA SUPLENTE /colors red 180 e4b55b FFFFFF 6/10 (pura blanca) 
-TURQUIA TITULAR /colors red 90 FFFFFF E5231F 6A150E hermosa 10/10 
-TURQUIA SUPLENTE /colors red 90 e52520 E9F6FD 8AD0E5 8/10 
-POLONIA TITULAR /colors red 90 e52520 FFFFFF E0E0E0 7/10 
-POLONIA SUPLENTE /colors red 90 FFFFFF E52520 9F1A16 10/10 
-INGLATERRA TITULAR /colors red 180 253d91 F8F8F8 FFFFFF F8F8F8 7/10 (pura blanca) 
-INGLATERRA SUPLENTE /colors red 180 FFFFFF E52520 (pura roja) 7/10 
-Alemania - /colors red 0 FFFAFA 000000 FF0000 FFA500 Los colores de la bandera pero bue 6/10 
-Holanda Bandeira - /colors red 90 000000 FF0000 FFFFFF 0000CC Parece La bandera de luxemburgo 4/10 
-Holanda Camisa - /colors red 180 000000 FF7F00 FF7F00 FF7F00 10/10 
-Canada Bandeira - /colors red 90 000000 FF0000 FFFFFF FF0000 Parece la bandera de austria 0/10 
-Japon: /colors blue 0 FFFCFC 090980 (parece la de francia) sin calfiicacion 
-Italia
-Juventus: /colors red 0 FFE600 000000 FFFFFF 000000 10/10
-Napoli: /colors blue 0 FFFFFF 0099FF 9/10
-
-Roma: /colors red 0 FFF700 940000 7/10
-
-Inter: /colors blue 0 FFFFFF 001E94 000000 001E94 8,5/10
-
-Milan: /colors red 0 FFFFFF E80000 000000 E80000 10/10
-
-Genoa: /colors red 0 FFFFFF B00000 001E94 6/10 (le falta un azul mas oscuro) 
-Inglaterra
-Leicester City: /colors blue 90 FFFFFF 0027A6 7,5/10
-
-Manchester United: /colors red 90 FFFFFF E80000 6/10
-
-Manchester City: /colors blue 90 000000 00BEE3 5/10 (confusa)
-
-Arsenal: /colors red 90 FFFFFF FF0000 1/10 Igual a la de m.united
-
-Chelsea: /colors blue 90 FFFFFF 0039BF Igual a la de leicester city 
-max-fb — Yesterday at 10:03 PM
-Alemania
-Bayern Munich: /colors red 00 FFFFFF FF0000 002EAD FF0000 (parece un tq a la del barcelona pero) 8,9/10
-
-Borussia Dortmund: /colors red 00 000000 FFFF00 8/10 (le faltaria para mi un negro para diferenciar)
-
-
-Bayer Leverkusen: /colors red 90 FFFFFF 000000 FF0000 000000 10/10
-
-Schalke 04: /colors blue 90 FFFFFF 0037EB (igual a la del chelsea y leicester city) 
-España
-Barcelona: /colors red 90 F7FF00 000073 800000 000073 10/10
-
-Real Madrid: /colors red 0 000000 FFFFFF (le agregaria algo amarillo) 8/10
-
-Atletico Madrid: /colors red 00 0A0063 E80000 FFFAFA E80000 (parece la bandera de peru xd) sin calificacion
-
-Athletic Club: /colors red 00 000000 E80000 FFFAFA E80000 es igual a la del atletico madrid 
-
-Real Betis: /colors red 00 000000 00DE3B FFFAFA 00DE3B un verde un tq mas oscuro le daria 7,9/10
-
-Espanyol: /colors blue 00 000000 FFFFFF 0016DB FFFFFF 8/10
-
-Malaga: /colors blue 00 000000 FFFFFF 0083DB FFFFFF es casi lo mismo que el espanyol pero mas claro el azul
-
-Sevilla: /colors red 00 000000 FFFFFF FF0000 FFFFFF Camiseta antigua por lo que veo
-
-Valencia: /colors red 0 000000 FFFFFF es correcta pero le agregaria un toque de negro 
-Argentina
-Boca Juniors: /colors blue 90 FFFFFF 006BD4 E0F000 006BD4
-
-River Plate: /colors red 60 000000 FFFFFF FA0000 FFFFFF
-
-Racing Club: /colors blue 0 000000 0088FF FAFAFA 0088FF
-
-Independiente: /colors red 60 FFFFFF FF0000 BD0000 FF0000
-
-San Lorenzo: /colors blue 0 FFFFFF 00002E FF0000 00002E
-
-Huracan: /colors red 0 EB0000 FFFFFF
-
-Estudiantes: /colors red 0 000000 FF0000 FFFFFF FF0000
-
-Gimnasia: /colors blue 90 FFFFFF FFFFFF 00159C FFFFFF
-
-Rosario Central: /colors blue 0 FFFFFF 001CA6 FFF700 001CA6
-
-Newell's Old Boys: /colors red 0 FFFFFF FF0000 000000
-
-Argentinos Juniors: /colors red 120 000000 FF0000 FFFFFF FF0000
-
-Velez: /colors blue 90 FFFFFF FFFFFF 000C59 FFFFFF
-
-Banfield: /colors blue 0 000000 FFFFFF 00B035 FFFFFF
-Lanus: /colors red 60 FFFFFF 590801
-
-Belgrano: /colors blue 60 FFFFFF 00E5FF
-
-Quilmes: /colors blue 60 02003D FFFFFF
-
-Tigre: /colors blue 90 FFFFFF 0010EB FF0000 0010EB
-
-Colon: /colors red 0 FFFFFF FF0000 000000
-
-Union: /colors red 0 000000 FF0000 FFFFFF FF0000
-
-Aldosivi: /colors blue 0 000000 F7FF00 006E0B F7FF00
-
-Olimpo: /colors blue 0 000000 F7FF00
-
-Defensa y Justicia: /colors blue 0 000000 F7FF00
-
-Godoy Cruz: /colors blue 0 FFFFFF 002CD9
-
-Sarmiento (J): /colors blue 0 FFFF00 00E636
-
-Temperley: /colors blue 60 FFFFFF 00E5FF
-
-Nueva Chicago: /colors blue 0 FFFFFF 00800D 000000 00800D
-
-Arsenal de Sarandi: /colors red 0 FFFFFF D10000 007BD9 D10000
-
-Atletico de Rafaela: /colors blue 0 000000 00D6DE FFFFFF 00D6DE
-
-San Martin (SJ): /colors blue 0 FFFFFF 00800D 000000 00800D
-
-Crucero del Norte: /colors blue 0 000000 EEFF00 FFA200
-
-Talleres de Cordoba: /colors blue 0 FFFFFF FFFFFF 010019 FFFFFF
-
-Talleres (RdE): /colors red 0 000000 FF0000 FFFFFF FF0000
-
-All Boys: /colors red 0 000000 FFFFFF
-
-Almagro: /colors blue 0 FFFFFF 003694 000000 003694
-
-Atlanta: /colors blue 0 FFFFFF F0E000 003694 F0E000
-
-Patronato: /colors red 0 FFFFFF F00000 000000 F00000
-
-Atl. Tucuman: /colors blue 0 000000 00D6DE FFFFFF 00D6DE
-Atl. Parana: /colors red 0 000000 FF0000 FFFFFF FF0000
-
-Boca Unidos: /colors red 0 FFFFFF F0F000 FF0000 F0F000
-
-Chacarita: /colors red 0 FFFFFF F00000 000000 F00000
-
-Ferro: /colors blue 0 FFFFFF 00BA2C 009623
-
-Instituto: /colors red 0 000000 FF0000 FFFFFF FF0000
-
-Los Andes: /colors red 0 000000 FF0000 FFFFFF FF0000
-
-Santamarina: /colors red 0 FFFFFF F0F000 000000 F0F000
-
-Platense: /colors red 90 FFFFFF FFFFFF 210C00 FFFFFF
-
-Estudiantes (BA): /colors red 0 FFFFFF FFFFFF 000000 FFFFFF
-
-Alvarado (MdP): /colors red 60 000000 120082 FFFFFF 120082
-
-        */
+        
