@@ -1,0 +1,255 @@
+{
+    //Datos del mapa 
+    "name" : "3 vs 3. Gana sigue",
+
+	"width" : 600,
+
+	"height" : 250,
+
+	"spawnDistance" : 200,
+
+    "cameraFollow" : "player",
+
+    "kickOffReset " : "full",
+
+    //Fondo
+	"bg" : { "type" : "hockey", "cornerRadius" : 10, "kickOffRadius" : 10, "goalLine" : 500},
+
+    "traits" : {
+        
+        "goalPost" : { "radius" : 6, "invMass" : 0, "bCoef" : 0.5 },
+        "borders" : {"vis": true, "cGroup" : ["wall", "ball"], "cMask" : ["ball"], "color" : "FFFFFF", "bCoef" : 0.98},
+        "bordersInv" : {"vis": false, "cGroup" : ["wall", "ball"], "cMask" : ["ball"], "color" : "FFFFFF", "bCoef" : 0.98},
+        "kickOffBarrier" : { "vis" : true, "bCoef" : 0.1, "cGroup" : ["redKO", "blueKO"], "cMask" : ["red", "blue"], "color" : "FFFFFF"},
+        "kickOffBlue" : { "vis" : true, "bCoef" : 0.1, "cGroup" : ["blueKO"], "cMask" : ["red", "blue"], "color" : "FFFFFF"},
+        "kickOffRed" : { "vis" : true, "bCoef" : 0.1, "cGroup" : ["redKO"], "cMask" : ["red", "blue"], "color" : "FFFFFF"},
+        "goalNet" : {"vis" : true, "bCoef" : 0.2, "cGroup" : ["all"], color: "DDDDDD"},
+        "area" : {"vis" : true, "cGroup" : [""], "cMask" : [""], "color" : "CCCCCC"},
+        "ballArea" : { "vis" : false, "bCoef" : 10, "cMask" : ["ball"] },
+    },
+
+    "vertexes" : [
+
+    /* Corners */
+         /* 0 */ {"x" : -500, "y" : -220, "trait" : "borders"}, //Top left
+         /* 1 */ {"x" : -500, "y" : 220, "trait" : "borders"}, //Bottom left
+         /* 2 */ {"x" : 500, "y" : -220, "trait" : "borders"}, //Top right
+         /* 3 */ {"x" : 500, "y" : 220, "trait" : "borders"}, //Bottom right
+
+    /* Middle */
+        /* 4 */ {"x" : 0, "y" : 220, "trait" : "borders"}, //Middle bototm
+        /* 5 */ {"x" : 0, "y" : -220, "trait" : "borders"}, //Middle top
+
+    /* Middle kickoff */
+        /* 6 */ {"x" : 0, "y" : 60, "trait" : "kickOffBarrier"},  //Middle little bottom
+        /* 7 */ {"x" : 0, "y" : -60, "trait" : "kickOffBarrier"},  //Middle little top
+    
+    /* Goals vertexes */
+        /* 8 */ {"x" : -500, "y" : -80},  //Goal top left 
+        /* 9 */ {"x" : -500, "y" : 80},   //Goal bottom left
+        /* 10 */ {"x" : 500, "y" : -80},  //Goal top right 
+        /* 11 */ {"x" : 500, "y" : 80},   //Goal bottom right
+        
+    /* Net post right*/
+        /* 12 */ {"x" : 540, "y" : 80},   //Net bottom right 
+        /* 13 */ {"x" : 540, "y" : -80},   //Net top right 
+
+    /* Net post left*/
+        /* 14 */ {"x" : -540, "y" : 80},   //Net bottom right 
+        /* 15 */ {"x" : -540, "y" : -80},   //Net top right 
+
+    /* Left area */
+        /* 16 */ {"x" : -420, "y" : -120, "trait" : "area"},   //Area top left 
+        /* 17 */ {"x" : -420, "y" : 120, "trait" : "area"},   //Area bottom left 
+        /* 18 */ {"x" : -500, "y" : 120, "trait" : "area"},   //Area bottom left 
+        /* 19 */ {"x" : -500, "y" : -120, "trait" : "area"},   //Area top left 
+        /* 20 */ {"x" : -420, "y" : 100, "trait" : "area"},   //Area bottom left 
+        /* 21 */ {"x" : -420, "y" : -100, "trait" : "area"},   //Area bottom left 
+    /* Right area */
+        /* 22 */ {"x" : 420, "y" : -120, "trait" : "area"},   //Area top left 
+        /* 23 */ {"x" : 420, "y" : 120, "trait" : "area"},   //Area bottom left 
+        /* 24 */ {"x" : 500, "y" : 120, "trait" : "area"},   //Area bottom left 
+        /* 25 */ {"x" : 500, "y" : -120, "trait" : "area"},   //Area top left 
+        /* 26 */ {"x" : 420, "y" : 100, "trait" : "area"},   //Area bottom left 
+        /* 27 */ {"x" : 420, "y" : -100, "trait" : "area"},   //Area bottom left 
+
+    /* Right top corner */
+        /* 28 */ {"x" : 500, "y" : -190, "trait" : "area"},   //Area bottom left 
+        /* 29 */ {"x" : 470, "y" : -220, "trait" : "area"},   //Area bottom left 
+    
+    /* Right bottom corner */
+        /* 30 */ {"x" : 500, "y" : 190, "trait" : "area"},   //Area bottom left 
+        /* 31 */ {"x" : 470, "y" : 220, "trait" : "area"},   //Area bottom left 
+
+    /* Left bottom corner */
+        /* 32 */ {"x" : -500, "y" : 190, "trait" : "area"},   //Area bottom left 
+        /* 33 */ {"x" : -470, "y" : 220, "trait" : "area"},   //Area bottom left 
+
+    /* Right top corner */
+        /* 34 */ {"x" : -500, "y" : -190, "trait" : "area"},   //Area bottom left 
+        /* 35 */ {"x" : -470, "y" : -220, "trait" : "area"},   //Area bottom left 
+
+    /* REINFORCMENT */
+        /* 36 */ {"x" : -502, "y" : -220, "trait" : "area"},
+        /* 37 */ {"x" : -502, "y" : -80, "trait" : "area"},
+
+        
+        /* 38 */ {"x" : -502, "y" : 220, "trait" : "area"},
+        /* 39 */ {"x" : -502, "y" : 80, "trait" : "area"},
+
+        /* 40 */ {"x" : -504, "y" : -220, "trait" : "area"},
+        /* 41 */ {"x" : -504, "y" : -80, "trait" : "area"},
+
+        /* 42 */ {"x" : -504, "y" : 220, "trait" : "area"},
+        /* 43 */ {"x" : -504, "y" : 80, "trait" : "area"},
+
+        /* 44 */ {"x" : -506, "y" : -220, "trait" : "area"},
+        /* 45 */ {"x" : -506, "y" : -80, "trait" : "area"},
+
+        /* 46 */ {"x" : -506, "y" : 220, "trait" : "area"},
+        /* 47 */ {"x" : -506, "y" : 80, "trait" : "area"},
+
+        /* 48 */ {"x" : 502, "y" : -220, "trait" : "area"},
+        /* 49 */ {"x" : 502, "y" : -80, "trait" : "area"},
+
+        
+        /* 50 */ {"x" : 502, "y" : 220, "trait" : "area"},
+        /* 51 */ {"x" : 502, "y" : 80, "trait" : "area"},
+
+        /* 52 */ {"x" : 504, "y" : -220, "trait" : "area"},
+        /* 53 */ {"x" : 504, "y" : -80, "trait" : "area"},
+
+        /* 54 */ {"x" : 504, "y" : 220, "trait" : "area"},
+        /* 55 */ {"x" : 504, "y" : 80, "trait" : "area"},
+
+        /* 56 */ {"x" : 506, "y" : -220, "trait" : "area"},
+        /* 57 */ {"x" : 506, "y" : -80, "trait" : "area"},
+
+        /* 58 */ {"x" : 506, "y" : 220, "trait" : "area"},
+        /* 59 */ {"x" : 506, "y" : 80, "trait" : "area"}
+	],
+
+    "segments" : [
+
+        {"v0" : 47, "v1" : 46, "trait" : "bordersInv"},
+        {"v0" : 44, "v1" : 45, "trait" : "bordersInv"},
+        {"v0" : 42, "v1" : 43, "trait" : "bordersInv"},
+        {"v0" : 40, "v1" : 41, "trait" : "bordersInv"},
+        {"v0" : 39, "v1" : 38, "trait" : "bordersInv"},
+
+        {"v0" : 59, "v1" : 58, "trait" : "bordersInv"},
+        {"v0" : 56, "v1" : 57, "trait" : "bordersInv"},
+        {"v0" : 55, "v1" : 54, "trait" : "bordersInv"},
+        {"v0" : 52, "v1" : 53, "trait" : "bordersInv"},
+        {"v0" : 51, "v1" : 50, "trait" : "bordersInv"},
+
+    /* top and bottom border */
+        {"v0" : 0, "v1" : 2, "trait" : "borders"},
+        {"v0" : 3, "v1" : 1, "trait" : "borders"},
+        
+    /* Left borders without goal*/
+        {"v0" : 8, "v1" : 0, "trait" : "borders"},
+        {"v0" : 9, "v1" : 1, "trait" : "borders"},
+
+    /* Right borders without goal*/
+        {"v0" : 10, "v1" : 2, "trait" : "borders"},
+        {"v0" : 11, "v1" : 3, "trait" : "borders"},
+
+    /* Middle borders kickouff*/
+        {"v0" : 4, "v1" : 6, "trait" : "kickOffBarrier"},
+        {"v0" : 5, "v1" : 7, "trait" : "kickOffBarrier"},
+
+    /* middle kickoff */
+        {"v0" : 6, "v1" : 7, "curve" : 180, "trait" : "kickOffBlue"},
+        {"v0" : 6, "v1" : 7, "curve" : -180, "trait" : "kickOffRed"},
+
+    /* Left net*/
+        {"v0" : 10, "v1" : 11, "trait" : "area"},
+        {"v0" : 10, "v1" : 13, "trait" : "goalNet"},
+        {"v0" : 11, "v1" : 12, "trait" : "goalNet"},
+        {"v0" : 12, "v1" : 13, "trait" : "goalNet"},
+
+    /* Right net*/
+        {"v0" : 9, "v1" : 8, "trait" : "area"},
+        {"v0" : 8, "v1" : 15, "trait" : "goalNet"},
+        {"v0" : 9, "v1" : 14, "trait" : "goalNet"},
+        {"v0" : 14, "v1" : 15, "trait" : "goalNet"},
+
+    /* Left area*/
+        {"v0" : 19, "v1" : 16, "trait" : "area"},
+        {"v0" : 18, "v1" : 17, "trait" : "area"},
+        {"v0" : 16, "v1" : 17, "trait" : "area"},
+        {"v0" : 20, "v1" : 21, "trait" : "area", "curve" : -90},
+
+    /* Left area*/
+        {"v0" : 25, "v1" : 22, "trait" : "area"},
+        {"v0" : 24, "v1" : 23, "trait" : "area"},
+        {"v0" : 22, "v1" : 23, "trait" : "area"},
+        {"v0" : 26, "v1" : 27, "trait" : "area", "curve" : 90},
+
+    /* Corner*/
+        {"v0" : 28, "v1" : 29, "trait" : "area", "curve" : 90},
+        {"v0" : 30, "v1" : 31, "trait" : "area", "curve" : -90},
+        {"v0" : 32, "v1" : 33, "trait" : "area", "curve" : 90},
+        {"v0" : 34, "v1" : 35, "trait" : "area", "curve" : -90},
+	],
+
+    //Place where the goals are
+    "goals" : [
+		{"p0" : [-500, 70], "p1" : [-500, -80], "team" : "red"},
+        {"p0" : [500, 70], "p1" : [500, -80], "team" : "blue"}
+	],
+
+    "discs" : [
+        /* Right disc*/
+		{"pos" : [500, 80], "color" : "FFFFFF", "trait" : "goalPost"},
+        {"pos" : [500, -80], "color" : "FFFFFF", "trait" : "goalPost"},
+
+        /* Left disc*/
+        {"pos" : [-500, 80], "color" : "FFFFFF", "trait" : "goalPost"},
+        {"pos" : [-500, -80], "color" : "FFFFFF", "trait" : "goalPost"},
+	],
+
+    "planes" : [
+        { "normal" : [ 0, 1], "dist" : -225, "bCoef" : 0.98, "trait" : "ballArea"},
+        { "normal" : [ 0, -1], "dist" : -225, "bCoef" : 0.98, "trait" : "ballArea"},
+		{ "normal" : [ 0, 1], "dist" : -255, "bCoef" : 0.98 }, // Top wall
+        { "normal" : [ 0,-1], "dist" : -255, "bCoef" : 0.98 }, // Bottom wall
+        { "normal" : [ 1, 0], "dist" : -540, "bCoef" : 0.98 }, // Left wall
+        { "normal" : [-1, 0], "dist" : -540, "bCoef" : 0.98 } // Right wall
+
+	],
+
+    "ballPhysics" : {
+       "pos" : [0,0],
+       // "gravity" : 
+        "radius" : 6,
+        "invMass" : 1.2,
+        "color" : "FFFF00",
+        "bCoef " : 0.2,
+        "damping" : 0.99,
+    },
+
+    "playerPhysics" : {
+        "bCoef" : 0.5,
+	    "invMass" : 0.5,
+	    "damping" : 0.95,
+	    "acceleration" : 0.13,
+	    "kickingAcceleration" : 0.08,
+	    "kickingDamping" : 0.93,
+	    "kickStrength" : 5
+    },
+
+    
+}
+
+/*
+
+Implementaciones
+    Arco más pequeño
+    Disco más pequeño a su vez
+    Corners agregar
+    Ponerle menos rebote a la pelota en las paredes
+    Hacerla que rebote menos en los jugadores
+    Si esta el coso de retroceso, sacarlo
+    */
