@@ -239,45 +239,45 @@
       /* STYLE */
 
       const cor = [
-        0xFA5646,
-        0xFFC12F,
-        0x7DFA89,
-        0x05C5FF,
-        0xFFFF17,
-        0xCCCCCC,
-        0xFFFFFF,
-        0x6ECAFF,
-        0xB0E0E6,
-        0x800080,
-        0xE5E4E2,
-        0xffd700,
-        0xd5d5d5,
-        0x896728,
-        0xD8BFD8,
-        0xF0E68C,
-        0xF0F8FF,
-        0xF8F8FF,
-        0xFFFAFA,
-        0xFFF5EE,
-        0xFFFAF0,
-        0xF5F5F5,
-        0xF5F5DC,
-        0xFDF5E6,
-        0xFFFFF0,
-        0xFAF0E6,
-        0xFFF8DC,
-        0xFAEBD7,
-        0xFFEBCD,
-        0xFFE4C4,
-        0xFFFFE0,
-        0xFFFACD,
-        0xFAFAD2,
-        0xFFEFD5,
-        0xFFDAB9,
-        0xFFE4B5,
-        0xEEE8AA,
-        0x426AD6,
-        0xff9966
+        /* 0  */0xFA5646,
+        /* 1  */0xFFC12F,
+        /* 2  */0x7DFA89,
+        /* 3  */0x05C5FF,
+        /* 4  */0xFFFF17,
+        /* 5  */0xCCCCCC,
+        /* 6  */0xFFFFFF,
+        /* 7  */0x6ECAFF,
+        /* 8  */0xB0E0E6,
+        /* 9  */0x800080,
+        /* 10 */0xE5E4E2,
+        /* 11 */0xffd700,
+        /* 12 */0xd5d5d5,
+        /* 13 */0x896728,
+        /* 14 */0xD8BFD8,
+        /* 15 */0xF0E68C,
+        /* 16 */0xF0F8FF,
+        /* 17 */0xF8F8FF,
+        /* 18 */0xFFFAFA,
+        /* 19 */0xFFF5EE,
+        /* 20 */0xFFFAF0,
+        /* 21 */0xF5F5F5,
+        /* 22 */0xF5F5DC,
+        /* 23 */0xFDF5E6,
+        /* 24 */0xFFFFF0,
+        /* 25 */0xFAF0E6,
+        /* 26 */0xFFF8DC,
+        /* 27 */0xFAEBD7,
+        /* 28 */0xFFEBCD,
+        /* 29 */0xFFE4C4,
+        /* 30 */0xFFFFE0,
+        /* 31 */0xFFFACD,
+        /* 32 */0xFAFAD2,
+        /* 33 */0xFFEFD5,
+        /* 34 */0xFFDAB9,
+        /* 35 */0xFFE4B5,
+        /* 36 */0xEEE8AA,
+        /* 37 */0x426AD6,
+        /* 38 */0xff9966
       ]
 
       const indexCor = new Map([
@@ -964,10 +964,16 @@
         }
         else {
             if (admins.indexOf(player.id) != -1) {
-                room.sendAnnouncement(player.name + ": " + message, null, cor[indexCor.get("purpura")], "normal");
+                room.sendAnnouncement("[👮]" + player.name + ": " + message, null, cor[indexCor.get("purpura")], "normal");
+            }
+            else if (Players_team[0].indexOf(player.id) != -1) {
+                room.sendAnnouncement("[🔴]" + player.name + ": " + message, null, cor[indexCor.get("floralWhite")], "normal");
+            }
+            else if (Players_team[1].indexOf(player.id) != -1) {
+                room.sendAnnouncement("[🔵]" + player.name + ": " + message, null, cor[indexCor.get("floralWhite")], "normal");
             }
             else {
-                room.sendAnnouncement(player.name + ": " + message, null, cor[indexCor.get("blanco")], "normal");
+                room.sendAnnouncement("[👻]" + player.name + ": " + message, null, cor[indexCor.get("gris")], "normal");
             }
         }
         return false;
