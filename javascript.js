@@ -7,6 +7,12 @@
     player_on_game = [[], []]
     admins = []
 
+    const muteTime = new Map();
+    
+    var playerKickBall = []
+    var teamKickBall = 0
+
+    var rand, rand1;
     // CONSTANTS
     const nam = "3 vs 3. Gana sigue";
     const maxPlayers = 10;
@@ -26,7 +32,8 @@
         '$776.420 la recaudación para esta nueva edición del superclásico del futbol argentino. MARTIIIIIIIIIIIN GOOOOOOOOOOOOOOOOOOOOOL',
         '¡HACELO, POR DIOS HACELO CUEVAS!',
         'Yo fallé y pagué, pero la pelota no se mancha',
-        'Allí va Almirón, camino a la gloria, camino al gol, 5,4,3,2,1. Almirón por arribaaaaa. VIVA EL FÚTBOL, VIVA EL FÚTBOL, VIVA EL FÚTBOL... GOL GOL GOL'
+        'Allí va Almirón, camino a la gloria, camino al gol, 5,4,3,2,1. Almirón por arribaaaaa. VIVA EL FÚTBOL, VIVA EL FÚTBOL, VIVA EL FÚTBOL... GOL GOL GOL',
+        'Se viene Silva, se viene Silva y esto es gol.... Silvaaa Goaaaaaaaaal!!! GOOOOOOAAAAAAAAAAL!!!'
     ]
 
     const frasesAutogol = [
@@ -236,6 +243,99 @@
         ["alvarado", 89]
       ]);
 
+      const camisIndex = new Map([
+        [0,"ARGENTINA"],
+        [1,"ARGENTINA-S"],
+        [2,"BRASIL"],
+        [3,"BRASIL-S"],
+        [4,"ESTADOS UNIDOS"],
+        [5,"ESTADOS UNIDOS-S"],
+        [6,"ITALIA"],
+        [7,"ITALIA-S"],
+        [8,"TURQUIA"],
+        [9,"TURQUIA-S"],
+        [10,"POLONIA"],
+        [11,"POLONIA-S"],
+        [12,"INGLATERRA"],
+        [13,"INGLATERRA-S"],
+        [14,"ALEMANIA"],
+        [15,"HOLANDA-B"],
+        [16,"HOLANDA"],
+        [17,"CANADA-B"],
+        [18,"JAPON"],
+        [19,"JUVENTUS"],
+        [20,"NAPOLI"],
+        [21,"ROMA"],
+        [22,"INTER"],
+        [23,"MILAN"],
+        [24,"GENOA"],
+        [25,"LEICESTER"],
+        [26,"MANCHESTER UNITED"],
+        [27,"MANCHESTER CITY"],
+        [28,"ARSENAL"],
+        [29,"CHELSEA"],
+        [30,"BAYERN MUNICH"],
+        [31,"BORUSSIA DORTUMUND"],
+        [32,"BAYER LEVERKUSEN"],
+        [33,"SCHALKE 04"],
+        [34,"BARCELONA"],
+        [35,"REAL MADRID"],
+        [36,"ATLETICO MADRID"],
+        [37,"ATHLETIC CLUB"],
+        [38,"REAL BETIS"],
+        [39,"ESPANYOL"],
+        [40,"MALAGA"],
+        [41,"SEVILLA"],
+        [42,"VALENCIA"],
+        [43,"BOCA JUNIORS"],
+        [44,"RIVER PLATE"],
+        [45,"RACING CLUB"],
+        [46,"INDEPENDIENTE"],
+        [47,"SAN LORENZO"],
+        [48,"HURACAN"],
+        [49,"ESTUDIANTES"],
+        [50,"GIMNASIA"],
+        [51,"ROSARIO CENTRAL"],
+        [52,"NEWELL'S"],
+        [53,"ARGENTINOS JUNIORS"],
+        [54,"VELEZ"],
+        [55,"BANFIELD"],
+        [56,"LANUS"],
+        [57,"BELGRANO"],
+        [58,"QUILMES"],
+        [59,"TIGRE"],
+        [60,"COLON"],
+        [61,"UNION"],
+        [62,"ALDOSIVI"],
+        [63,"OLIMPO"],
+        [64,"DEFENSA Y JUSTICIA"],
+        [65,"GODOY CRUZ"],
+        [66,"SARMIENTO"],
+        [67,"TEMPERLEY"],
+        [68,"NUEVA CHICAGO"],
+        [69,"ARSENAL"],
+        [70,"ATLETICO DE RAFAELA"],
+        [71,"SAN MARTIN DE SAN JUAN"],
+        [72,"CRUCERO DEL NORTE"],
+        [73,"TALLERES DE CORDOBA"],
+        [74,"TALLERES DE REMEDIOS DE ESCALADA"],
+        [75,"ALL BOYS"],
+        [76,"ALMAGRO"],
+        [77,"ATLANTA"],
+        [78,"PATRONATO"],
+        [79,"ATLETICO TUCUMAN"],
+        [80,"ATLETICO PARANA"],
+        [81,"BOCA UNIDOS"],
+        [82,"CHACARITA"],
+        [83,"FERRO"],
+        [84,"INSTITUTO"],
+        [85,"LOS ANDES"],
+        [86,"SANTAMARINA"],
+        [87,"PLATENSE"],
+        [88,"ESTUDIANTES DE CASEROS"],
+        [89,"ALVARADO"]
+      ]);
+
       /* STYLE */
 
       const cor = [
@@ -366,10 +466,10 @@
         "vertexes" : [
     
         /* Corners */
-             /* 0 */ {"x" : -500, "y" : -240, "trait" : "borders"}, //Top left
-             /* 1 */ {"x" : -500, "y" : 240, "trait" : "borders"}, //Bottom left
-             /* 2 */ {"x" : 500, "y" : -240, "trait" : "borders"}, //Top right
-             /* 3 */ {"x" : 500, "y" : 240, "trait" : "borders"}, //Bottom right
+             /* 0 */ {"x" : -550, "y" : -240, "trait" : "borders"}, //Top left
+             /* 1 */ {"x" : -550, "y" : 240, "trait" : "borders"}, //Bottom left
+             /* 2 */ {"x" : 550, "y" : -240, "trait" : "borders"}, //Top right
+             /* 3 */ {"x" : 550, "y" : 240, "trait" : "borders"}, //Bottom right
     
         /* Middle */
             /* 4 */ {"x" : 0, "y" : 240, "trait" : "borders"}, //Middle bototm
@@ -380,88 +480,88 @@
             /* 7 */ {"x" : 0, "y" : -60, "trait" : "kickOffBarrier"},  //Middle little top
         
         /* Goals vertexes */
-            /* 8 */ {"x" : -500, "y" : -75},  //Goal top left 
-            /* 9 */ {"x" : -500, "y" : 75},   //Goal bottom left
-            /* 10 */ {"x" : 500, "y" : -75},  //Goal top right 
-            /* 11 */ {"x" : 500, "y" : 75},   //Goal bottom right
+            /* 8 */ {"x" : -550, "y" : -75},  //Goal top left 
+            /* 9 */ {"x" : -550, "y" : 75},   //Goal bottom left
+            /* 10 */ {"x" : 550, "y" : -75},  //Goal top right 
+            /* 11 */ {"x" : 550, "y" : 75},   //Goal bottom right
             
         /* Net post right*/
-            /* 12 */ {"x" : 540, "y" : 75},   //Net bottom right 
-            /* 13 */ {"x" : 540, "y" : -75},   //Net top right 
+            /* 12 */ {"x" : 590, "y" : 75},   //Net bottom right 
+            /* 13 */ {"x" : 590, "y" : -75},   //Net top right 
     
         /* Net post left*/
-            /* 14 */ {"x" : -540, "y" : 75},   //Net bottom right 
-            /* 15 */ {"x" : -540, "y" : -75},   //Net top right 
+            /* 14 */ {"x" : -590, "y" : 75},   //Net bottom right 
+            /* 15 */ {"x" : -590, "y" : -75},   //Net top right 
     
         /* Left area */
-            /* 16 */ {"x" : -420, "y" : -120, "trait" : "area"},   //Area top left 
-            /* 17 */ {"x" : -420, "y" : 120, "trait" : "area"},   //Area bottom left 
-            /* 18 */ {"x" : -500, "y" : 120, "trait" : "area"},   //Area bottom left 
-            /* 19 */ {"x" : -500, "y" : -120, "trait" : "area"},   //Area top left 
-            /* 20 */ {"x" : -420, "y" : 100, "trait" : "area"},   //Area bottom left 
-            /* 21 */ {"x" : -420, "y" : -100, "trait" : "area"},   //Area bottom left 
+            /* 16 */ {"x" : -470, "y" : -120, "trait" : "area"},   //Area top left 
+            /* 17 */ {"x" : -470, "y" : 120, "trait" : "area"},   //Area bottom left 
+            /* 18 */ {"x" : -550, "y" : 120, "trait" : "area"},   //Area bottom left 
+            /* 19 */ {"x" : -550, "y" : -120, "trait" : "area"},   //Area top left 
+            /* 20 */ {"x" : -470, "y" : 100, "trait" : "area"},   //Area bottom left 
+            /* 21 */ {"x" : -470, "y" : -100, "trait" : "area"},   //Area bottom left 
         /* Right area */
-            /* 22 */ {"x" : 420, "y" : -120, "trait" : "area"},   //Area top left 
-            /* 23 */ {"x" : 420, "y" : 120, "trait" : "area"},   //Area bottom left 
-            /* 24 */ {"x" : 500, "y" : 120, "trait" : "area"},   //Area bottom left 
-            /* 25 */ {"x" : 500, "y" : -120, "trait" : "area"},   //Area top left 
-            /* 26 */ {"x" : 420, "y" : 100, "trait" : "area"},   //Area bottom left 
-            /* 27 */ {"x" : 420, "y" : -100, "trait" : "area"},   //Area bottom left 
+            /* 22 */ {"x" : 470, "y" : -120, "trait" : "area"},   //Area top left 
+            /* 23 */ {"x" : 470, "y" : 120, "trait" : "area"},   //Area bottom left 
+            /* 24 */ {"x" : 550, "y" : 120, "trait" : "area"},   //Area bottom left 
+            /* 25 */ {"x" : 550, "y" : -120, "trait" : "area"},   //Area top left 
+            /* 26 */ {"x" : 470, "y" : 100, "trait" : "area"},   //Area bottom left 
+            /* 27 */ {"x" : 470, "y" : -100, "trait" : "area"},   //Area bottom left 
     
         /* Right top corner */
-            /* 28 */ {"x" : 500, "y" : -210, "trait" : "area"},   //Area bottom left 
-            /* 29 */ {"x" : 470, "y" : -240, "trait" : "area"},   //Area bottom left 
+            /* 28 */ {"x" : 550, "y" : -210, "trait" : "area"},   //Area bottom left 
+            /* 29 */ {"x" : 520, "y" : -240, "trait" : "area"},   //Area bottom left 
         
         /* Right bottom corner */
-            /* 30 */ {"x" : 500, "y" : 210, "trait" : "area"},   //Area bottom left 
-            /* 31 */ {"x" : 470, "y" : 240, "trait" : "area"},   //Area bottom left 
+            /* 30 */ {"x" : 550, "y" : 210, "trait" : "area"},   //Area bottom left 
+            /* 31 */ {"x" : 520, "y" : 240, "trait" : "area"},   //Area bottom left 
     
         /* Left bottom corner */
-            /* 32 */ {"x" : -500, "y" : 210, "trait" : "area"},   //Area bottom left 
-            /* 33 */ {"x" : -470, "y" : 240, "trait" : "area"},   //Area bottom left 
+            /* 32 */ {"x" : -550, "y" : 210, "trait" : "area"},   //Area bottom left 
+            /* 33 */ {"x" : -520, "y" : 240, "trait" : "area"},   //Area bottom left 
     
         /* Right top corner */
-            /* 34 */ {"x" : -500, "y" : -210, "trait" : "area"},   //Area bottom left 
-            /* 35 */ {"x" : -470, "y" : -240, "trait" : "area"},   //Area bottom left 
+            /* 34 */ {"x" : -550, "y" : -210, "trait" : "area"},   //Area bottom left 
+            /* 35 */ {"x" : -520, "y" : -240, "trait" : "area"},   //Area bottom left 
     
         /* REINFORCMENT */
-            /* 36 */ {"x" : -502, "y" : -240, "trait" : "area"},
-            /* 37 */ {"x" : -502, "y" : -75, "trait" : "area"},
+            /* 36 */ {"x" : -552, "y" : -240, "trait" : "area"},
+            /* 37 */ {"x" : -552, "y" : -75, "trait" : "area"},
     
             
-            /* 38 */ {"x" : -502, "y" : 240, "trait" : "area"},
-            /* 39 */ {"x" : -502, "y" : 75, "trait" : "area"},
+            /* 38 */ {"x" : -552, "y" : 240, "trait" : "area"},
+            /* 39 */ {"x" : -552, "y" : 75, "trait" : "area"},
     
-            /* 40 */ {"x" : -504, "y" : -240, "trait" : "area"},
-            /* 41 */ {"x" : -504, "y" : -75, "trait" : "area"},
+            /* 40 */ {"x" : -554, "y" : -240, "trait" : "area"},
+            /* 41 */ {"x" : -554, "y" : -75, "trait" : "area"},
     
-            /* 42 */ {"x" : -504, "y" : 240, "trait" : "area"},
-            /* 43 */ {"x" : -504, "y" : 75, "trait" : "area"},
+            /* 42 */ {"x" : -554, "y" : 240, "trait" : "area"},
+            /* 43 */ {"x" : -554, "y" : 75, "trait" : "area"},
     
-            /* 44 */ {"x" : -506, "y" : -240, "trait" : "area"},
-            /* 45 */ {"x" : -506, "y" : -75, "trait" : "area"},
+            /* 44 */ {"x" : -556, "y" : -240, "trait" : "area"},
+            /* 45 */ {"x" : -556, "y" : -75, "trait" : "area"},
     
-            /* 46 */ {"x" : -506, "y" : 240, "trait" : "area"},
-            /* 47 */ {"x" : -506, "y" : 75, "trait" : "area"},
+            /* 46 */ {"x" : -556, "y" : 240, "trait" : "area"},
+            /* 47 */ {"x" : -556, "y" : 75, "trait" : "area"},
     
-            /* 48 */ {"x" : 502, "y" : -240, "trait" : "area"},
-            /* 49 */ {"x" : 502, "y" : -75, "trait" : "area"},
+            /* 48 */ {"x" : 552, "y" : -240, "trait" : "area"},
+            /* 49 */ {"x" : 552, "y" : -75, "trait" : "area"},
     
             
-            /* 50 */ {"x" : 502, "y" : 240, "trait" : "area"},
-            /* 51 */ {"x" : 502, "y" : 75, "trait" : "area"},
+            /* 50 */ {"x" : 552, "y" : 240, "trait" : "area"},
+            /* 51 */ {"x" : 552, "y" : 75, "trait" : "area"},
     
-            /* 52 */ {"x" : 504, "y" : -240, "trait" : "area"},
-            /* 53 */ {"x" : 504, "y" : -75, "trait" : "area"},
+            /* 52 */ {"x" : 554, "y" : -240, "trait" : "area"},
+            /* 53 */ {"x" : 554, "y" : -75, "trait" : "area"},
     
-            /* 54 */ {"x" : 504, "y" : 240, "trait" : "area"},
-            /* 55 */ {"x" : 504, "y" : 75, "trait" : "area"},
+            /* 54 */ {"x" : 554, "y" : 240, "trait" : "area"},
+            /* 55 */ {"x" : 554, "y" : 75, "trait" : "area"},
     
-            /* 56 */ {"x" : 506, "y" : -240, "trait" : "area"},
-            /* 57 */ {"x" : 506, "y" : -75, "trait" : "area"},
+            /* 56 */ {"x" : 556, "y" : -240, "trait" : "area"},
+            /* 57 */ {"x" : 556, "y" : -75, "trait" : "area"},
     
-            /* 58 */ {"x" : 506, "y" : 240, "trait" : "area"},
-            /* 59 */ {"x" : 506, "y" : 75, "trait" : "area"}
+            /* 58 */ {"x" : 556, "y" : 240, "trait" : "area"},
+            /* 59 */ {"x" : 556, "y" : 75, "trait" : "area"}
         ],
     
         "segments" : [
@@ -531,27 +631,27 @@
     
         //Place where the goals are
         "goals" : [
-            {"p0" : [-500, 70], "p1" : [-500, -80], "team" : "red"},
-            {"p0" : [500, 70], "p1" : [500, -80], "team" : "blue"}
+            {"p0" : [-550, 70], "p1" : [-550, -80], "team" : "red"},
+            {"p0" : [550, 70], "p1" : [550, -80], "team" : "blue"}
         ],
     
         "discs" : [
             /* Right disc*/
-            {"pos" : [500, 75], "color" : "FFFFFF", "trait" : "goalPost"},
-            {"pos" : [500, -75], "color" : "FFFFFF", "trait" : "goalPost"},
+            {"pos" : [550, 75], "color" : "FFFFFF", "trait" : "goalPost"},
+            {"pos" : [550, -75], "color" : "FFFFFF", "trait" : "goalPost"},
     
             /* Left disc*/
-            {"pos" : [-500, 75], "color" : "FFFFFF", "trait" : "goalPost"},
-            {"pos" : [-500, -75], "color" : "FFFFFF", "trait" : "goalPost"},
+            {"pos" : [-550, 75], "color" : "FFFFFF", "trait" : "goalPost"},
+            {"pos" : [-550, -75], "color" : "FFFFFF", "trait" : "goalPost"},
         ],
     
         "planes" : [
-            { "normal" : [ 0, 1], "dist" : -225, "bCoef" : 0.98, "trait" : "ballArea"},
-            { "normal" : [ 0, -1], "dist" : -225, "bCoef" : 0.98, "trait" : "ballArea"},
-            { "normal" : [ 0, 1], "dist" : -255, "bCoef" : 0.98 }, // Top wall
-            { "normal" : [ 0,-1], "dist" : -255, "bCoef" : 0.98 }, // Bottom wall
-            { "normal" : [ 1, 0], "dist" : -540, "bCoef" : 0.98 }, // Left wall
-            { "normal" : [-1, 0], "dist" : -540, "bCoef" : 0.98 } // Right wall
+            { "normal" : [ 0, 1], "dist" : -240, "bCoef" : 0.98, "trait" : "ballArea"},
+            { "normal" : [ 0, -1], "dist" : -240, "bCoef" : 0.98, "trait" : "ballArea"},
+            { "normal" : [ 0, 1], "dist" : -270, "bCoef" : 0.98 }, // Top wall
+            { "normal" : [ 0,-1], "dist" : -270, "bCoef" : 0.98 }, // Bottom wall
+            { "normal" : [ 1, 0], "dist" : -590, "bCoef" : 0.98 }, // Left wall
+            { "normal" : [-1, 0], "dist" : -590, "bCoef" : 0.98 } // Right wall
     
         ],
     
@@ -571,7 +671,7 @@
             "acceleration" : 0.12,
             "kickingAcceleration" : 0.095,
             "kickingDamping" : 0.93,
-            "kickStrength" : 4.6
+            "kickStrength" : 4
         },
     
         
@@ -603,6 +703,25 @@
     room.setTeamsLock(true)
 
     /* FUNCTIONS */
+
+    function addMinutes(date, minutes) {
+        date.setMinutes(date.getMinutes() + minutes);
+        return date;
+      }
+
+    /* Return -1 if there's no matching id with this name*/
+    function getPlayerIDbyName(name) {
+        let playersList = room.getPlayerList()
+        for (let i = 0; i < playersList.length; i++) {
+            console.log(playersList[i].name.replace(/ /g, '_'))
+            nombreJugador = playersList[i].name.replace(/ /g, '_')
+            if (nombreJugador == name) {
+                return playersList[i].id
+            }
+        }
+        return -1
+        
+    }
 
     function randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
@@ -730,18 +849,18 @@
             }
         }
         else if(room.getPlayerList().length >= 6 && Players_team[1] == 3 && Players_team[1] == 3) {return}
-        else if(room.getPlayerList().length >= 6 && Players_team[1] != 3 && Players_team[1] == 3) {
-            for(let i = Players_team[1]; i < 3; i++) {
+        else if(room.getPlayerList().length >= 6 && Players_team[1] != 3 && Players_team[2] == 3) {
+            for(let i = Players_team[1].length; i < 3; i++) {
                 room.setPlayerTeam(Players_team[0][i], 1)
             }
         }
-        else if(room.getPlayerList().length >= 6 && Players_team[1] == 3 && Players_team[1] != 3) {
-            for(let i = Players_team[1]; i < 3; i++) {
+        else if(room.getPlayerList().length >= 6 && Players_team[1] == 3 && Players_team[2] != 3) {
+            for(let i = Players_team[1].length; i < 3; i++) {
                 room.setPlayerTeam(Players_team[0][i], 1)
             }
         }
-        else if(room.getPlayerList().length >= 6 && Players_team[1] != 3 && Players_team[1] != 3) {
-            for(let i = Players_team[1]; i < 3; i++) {
+        else if(room.getPlayerList().length >= 6 && Players_team[1] != 3 && Players_team[2] != 3) {
+            for(let i = Players_team[1].length; i < 3; i++) {
                 if (Players_team[1].length > Players_team[2].length) {
                     room.setPlayerTeam(Players_team[0][i], 2)
                 }
@@ -759,14 +878,15 @@
         updateAdmins();
         updateTeamsEntrar(player.team, player.id);
         enough_players()
-        room.sendAnnouncement("Welcome " + player.name + " to the server.", null, cor[indexCor.get("celeste")], "bold");
+        room.sendAnnouncement("Bienvenido " + player.name + ". Espero que disfrutes del server", null, cor[indexCor.get("celeste")], "bold");
+        room.sendAnnouncement("Para ver los comandos, podes pulsar !help y te los mostrará", null, cor[indexCor.get("celeste")], "bold");
     }
     
     room.onPlayerLeave = function(player) {
         updateTeamsSalir(player.team, player.id);
         updateAdmins();
         enough_players();
-        room.sendAnnouncement("Bye " + player.name + " from the server.", null, cor[indexCor.get("celeste")], "bold");
+        room.sendAnnouncement("Hasta luego " + player.name + ". Espero que hayas disfrutado del server", null, cor[indexCor.get("celeste")], "bold");
     }
 
     room.onPlayerKicked = function(kickedPlayer, reason, ban, byPlayer) {
@@ -783,7 +903,41 @@
         if(message.charAt(0) == '!') {
             words = message.split(" ")
             switch (words[0].substring(1)) {
+                /* Si hay más de una persona con el mismo nombre no funciona correctamente, al no poder distiguir su nombre entre ellos*/
+                case "msg":
+                    if (words.length == 1) {
+                        room.sendAnnouncement("!msg @(nombre de la persona) (texto para quien dirigirlo) ", words[-1], cor[indexCor.get("plata")], "bold");  
+                    }
+                    else if (words.length > 2) {
+                        playerID = getPlayerIDbyName(words[1].substring(1))
+                        if (playerID != -1 ) {
+                            
+                            if (player.team == 0) {
+                                room.sendAnnouncement("[👻]"+ player.name + ": " + words.slice(2).join(' '), player.id, cor[indexCor.get("plata")], "bold");  
+                                room.sendAnnouncement("[👻]"+ player.name + ": " + words.slice(2).join(' '), playerID, cor[indexCor.get("plata")], "bold");  
+                            } else if (player.team == 1) {
+                                room.sendAnnouncement("[🔴]"+ player.name + ": " + words.slice(2).join(' '), player.id, cor[indexCor.get("plata")], "bold"); 
+                                room.sendAnnouncement("[🔴]" + player.name + ": " + words.slice(2).join(' '), playerID, cor[indexCor.get("plata")], "bold");  
+                            } else {
+                                room.sendAnnouncement("[🔵]"+ player.name + ": " + words.slice(2).join(' '), player.id, cor[indexCor.get("plata")], "bold"); 
+                                room.sendAnnouncement("[🔵]" + player.name + ": " + words.slice(2).join(' '), playerID, cor[indexCor.get("plata")], "bold");  
+                            }
+                        }
+                        else {
+                            room.sendAnnouncement("Jugador no encontrado. Verifique haberlo escrito de la siguiente forma: @nombre del jugador", player.id, cor[indexCor.get("rojo")], "bold")
+                        }
+                    }
+                    break;
                 case "t":
+                    if (words.length == 1) {
+                        room.sendAnnouncement("!t mensaje", words[-1], cor[indexCor.get("plata")], "bold");  
+                    } else {
+                        for (let i = 0; i < Players_team[player.team].length; i++) {
+                            console.log(words.slice(1).join(' '))
+                            room.sendAnnouncement("[🔴]"+ words.slice(1).join(' '), Players_team[player.team][i], cor[indexCor.get("plata")], "normal");  
+                        }   
+                    }
+                    break;
                 case "teams":
                     if (Players_team[0].length == 0) {
                         room.sendAnnouncement("No hay jugadores espectadores", player.id, cor[indexCor.get("plata")], "bold");
@@ -832,24 +986,15 @@
                         room.sendAnnouncement("Se aplicó correctamente la contraseña", player.id, cor[indexCor.get("verde")], "bold");
                     }
                     else {
-                        room.sendAnnouncement("You've not the rights to do that", player.id, cor[indexCor.get("rojo")], "bold");
+                        room.sendAnnouncement("No tenés los requisitos necesarios", player.id, cor[indexCor.get("rojo")], "bold");
                     }
                     break;
-                    /*
-                case "state":
-                    room.sendAnnouncement("The room is " + public + "\nThe room's password is " + room.password, player.id);
-                    break;
-                    */
-                   /*
-                case "rules":
-                    room.sendAnnouncement("Acá se explican las reglas", player.id);
-                    break;
-                    */
                 case "help":
-                    room.sendAnnouncement("Acá se explican los comandos", player.id);
+                    room.sendAnnouncement("USUARIOS\n!help: muestra está interfaz gráfica\n!msg: manda mensaje a una persona\n!bb: salir del server\n!stats: muestra las estadisticas (en desarrollo)\n!admins: muestra los admins en el server\n!teams: muestra los nombres de las personas de cada equipo\n!t: chatear con el equipo", player.id, cor[indexCor.get("gold")], "bold");
+                    room.sendAnnouncement("ADMINISTRADORES\n!password: cambia la contraseña de la sala\n!stop: para el partido\n!start: empieza una partida\n!pause: pausa la partida\n!unpaused: despausa la partida\n!camis: cambia las camisetas de los equipos\n!rr: reiniciar partida\n!rand: partida con personas aleatorias (en desarrollo)", player.id, cor[indexCor.get("gold")], "bold");
                     break;
                 case "bb":
-                    room.kickPlayer(player.id, "Bye. Hope you enjoy the host", false) //Echar a la persona
+                    room.kickPlayer(player.id, "Nv, espero que hayas disfrutado del server", false) //Echar a la persona
                     break;
                 case "stats":
                     room.sendAnnouncement("Acá se muestran las stats propias", player.id);
@@ -859,7 +1004,7 @@
                         room.stopGame()
                     } 
                     else {
-                        room.sendAnnouncement("You've not the rights to do that", player.id, cor[indexCor.get("rojo")], "bold");
+                        room.sendAnnouncement("No tenés los requisitos necesarios", player.id, cor[indexCor.get("rojo")], "bold");
                     }
                     break;
                 case "pause":
@@ -867,7 +1012,7 @@
                         room.pauseGame(true)
                     } 
                     else {
-                        room.sendAnnouncement("You've not the rights to do that", player.id, cor[indexCor.get("rojo")], "bold");
+                        room.sendAnnouncement("No tenés los requisitos necesarios", player.id, cor[indexCor.get("rojo")], "bold");
                     }
                     break;
                 case "unpaused":
@@ -875,15 +1020,15 @@
                         room.pauseGame(false)
                     } 
                     else {
-                        room.sendAnnouncement("You've not the rights to do that", player.id, cor[indexCor.get("rojo")], "bold");
+                        room.sendAnnouncement("No tenés los requisitos necesarios", player.id, cor[indexCor.get("rojo")], "bold");
                     }
                     break;
                 case "start":
                     if (admins.indexOf(player.id) != -1) {
                         room.startGame()
-                    } 
+                    }  
                     else {
-                        room.sendAnnouncement("You've not the rights to do that", player.id, cor[indexCor.get("rojo")], "bold");
+                        room.sendAnnouncement("No tenés los requisitos necesarios", player.id, cor[indexCor.get("rojo")], "bold");
                     }
                     
                     break;
@@ -894,39 +1039,49 @@
                         room.startGame()
                     } 
                     else {
-                        room.sendAnnouncement("You've not the rights to do that", player.id, cor[indexCor.get("rojo")], "bold");
+                        room.sendAnnouncement("No tenés los requisitos necesarios", player.id, cor[indexCor.get("rojo")], "bold");
                     }
                     
                     break;
                 case "rand":   
                     if (admins.indexOf(player.id) != -1) {
-
+                        for (let i = 0; i < 2; i++) {
+                            moveJug(i)
+                        }
+                        setTimeout(() => {
+                            for (let i = 1; i <= 2; i++)
+                            {
+                                for (let j = 0; j < 3; j++)
+                                {
+                                    numero = randomIntFromInterval(0, Players_team[0].length -1)
+                                    room.setPlayerTeam(Players_team[i][j], team)
+                                }
+                            }
+                        }, 5000);
                     } 
                     else {
-                        room.sendAnnouncement("You've not the rights to do that", player.id, cor[indexCor.get("rojo")], "bold");
+                        room.sendAnnouncement("No tenés los requisitos necesarios", player.id, cor[indexCor.get("rojo")], "bold");
                     } 
                       break;
                 case "camis":
                 case "camisetas":
                     if (admins.indexOf(player.id) != -1) {
                         if(words.length == 1 || words.length == 2) {
-                            room.sendAnnouncement("Para ejecutar este comando usar:", player.id)
-                            room.sendAnnouncement("!camisetas 1 (red) / 2 (blue) nombre de equipo", player.id)
-                            room.sendAnnouncement("SELECCIONES: ", player.id);
-                            room.sendAnnouncement("argentina, argentina-s, brasil, brasil-s, estados unidos, estados unidos-s, italia, italia-s, turquia, turquia-s, polonia, polonia-s, inglaterra, inglaterra-s, alemania, holanda-b, holanda, canada-b, japon: ", player.id);
-                            room.sendAnnouncement("EQUIPOS ITALIANOS:", player.id);
-                            room.sendAnnouncement("juventus, napoli, roma, inter, milan, genoa", player.id);
-                            room.sendAnnouncement("EQUIPOS INGLESES:", player.id);
-                            room.sendAnnouncement("leicester, manchester united, manchester city, arsenal, chelsea", player.id);
-                            room.sendAnnouncement("EQUIPOS ALEMANES:", player.id);
-                            room.sendAnnouncement("juventus, napoli, roma, inter, milan, genoa", player.id);
-                            room.sendAnnouncement("EQUIPOS ESPAÑOLES::", player.id);
-                            room.sendAnnouncement("barcelona, real madrid, atletico madrid, athletic club, real betis, espanyol, malaga, sevilla, valencia", player.id);
-                            room.sendAnnouncement("EQUIPOS ARGENTINOS:", player.id);
-                            room.sendAnnouncement("boca juniors, river plate, racing club, independiente, san lorenzo, huracan, estudiantes, gimnasia, rosario central, newell's, argentinos juniors, velez, banfield, lanus, belgrano, quilmes, tigre, colon, union, ", player.id);
-                            room.sendAnnouncement("aldosivi, olimpo, defensa y justicia, godoy cruz, sarmiento, temperley, nueva chicago, arsenal, atletico de rafaela, san martin de san juan, crucero del norte, talleres de cordoba, ", player.id);
-                            room.sendAnnouncement("talleres de remedios de escalada, all boys, almagro, atlanta, patronato, atletico tucuman, atletico parana, boca unidos, chacarita, ferro, instituto, los andes, santamarina, platense, estudiantes de caseros, alvarado", player.id);
-                        } else if(words.length == 3) {
+                            room.sendAnnouncement("Para ejecutar este comando usar:", player.id, cor[indexCor.get("lightGoldenrodYellow")], "bold")
+                            room.sendAnnouncement("!camisetas 1 (red) / 2 (blue) nombre de equipo", player.id, cor[indexCor.get("lightGoldenrodYellow")], "bold")
+                            room.sendAnnouncement("SELECCIONES: ", player.id, cor[indexCor.get("lightGoldenrodYellow")], "bold");
+                            room.sendAnnouncement("argentina, argentina-s, brasil, brasil-s, estados unidos, estados unidos-s, italia, italia-s, turquia, turquia-s, polonia, polonia-s, inglaterra, inglaterra-s, alemania, holanda-b, holanda, canada-b, japon: ", player.id, cor[indexCor.get("lightGoldenrodYellow")], "normal");
+                            room.sendAnnouncement("EQUIPOS ITALIANOS:", player.id, cor[indexCor.get("lightGoldenrodYellow")], "bold");
+                            room.sendAnnouncement("juventus, napoli, roma, inter, milan, genoa", player.id, cor[indexCor.get("lightGoldenrodYellow")], "normal");
+                            room.sendAnnouncement("EQUIPOS INGLESES:", player.id, cor[indexCor.get("lightGoldenrodYellow")], "bold");
+                            room.sendAnnouncement("leicester, manchester united, manchester city, arsenal, chelsea", player.id, cor[indexCor.get("lightGoldenrodYellow")], "normal");
+                            room.sendAnnouncement("EQUIPOS ALEMANES:", player.id, cor[indexCor.get("lightGoldenrodYellow")], "bold");
+                            room.sendAnnouncement("juventus, napoli, roma, inter, milan, genoa", player.id, cor[indexCor.get("lightGoldenrodYellow")], "bold");
+                            room.sendAnnouncement("EQUIPOS ESPAÑOLES::", player.id, cor[indexCor.get("lightGoldenrodYellow")], "bold");
+                            room.sendAnnouncement("barcelona, real madrid, atletico madrid, athletic club, real betis, espanyol, malaga, sevilla, valencia", player.id, cor[indexCor.get("lightGoldenrodYellow")], "normal");
+                            room.sendAnnouncement("EQUIPOS ARGENTINOS:", player.id, cor[indexCor.get("lightGoldenrodYellow")], "bold");
+                            room.sendAnnouncement("boca juniors, river plate, racing club, independiente, san lorenzo, huracan, estudiantes, gimnasia, rosario central, newell's, argentinos juniors, velez, banfield, lanus, belgrano, quilmes, tigre, colon, union, aldosivi, olimpo, defensa y justicia, godoy cruz, sarmiento, temperley, nueva chicago, arsenal, atletico de rafaela, san martin de san juan, crucero del norte, talleres de cordoba, talleres de remedios de escalada, all boys, almagro, atlanta, patronato, atletico tucuman, atletico parana, boca unidos, chacarita, ferro, instituto, los andes, santamarina, platense, estudiantes de caseros, alvarado", player.id, cor[indexCor.get("lightGoldenrodYellow")], "normal");
+                        } else if(words.length >= 3) {
                             if (isNumeric(words[1]) == true && isNumeric(words[2]) == true) {
                                 teamColorSeleccionado = parseInt(words[1])
                                 team_sel = parseInt(words[2])
@@ -937,7 +1092,7 @@
                             else if (isNumeric(words[1]) == true && is_letters_and_spaces(words[2]) == true) {
                                 teamColorSeleccionado = parseInt(words[1])
                                 if (indexCamis.has(words[2]) == true) {
-                                    team_sel = indexCamis.get(words[2])
+                                    team_sel = indexCamis.get(words.slice(2).join(' '))
                                     colors = camis[team_sel].slice(2)
                                     room.setTeamColors(teamColorSeleccionado, camis[team_sel][0], camis[team_sel][1], colors)
                                 }
@@ -954,8 +1109,50 @@
                         }
                     } 
                     else {
-                        room.sendAnnouncement("You've not the rights to do that", player.id, cor[indexCor.get("rojo")], "bold");
+                        room.sendAnnouncement("No tenés los requisitos necesarios", player.id, cor[indexCor.get("rojo")], "bold");
                     } 
+                    break;
+                case "discord":
+                    if (admins.indexOf(player.id) != -1) {
+                        room.sendAnnouncement("             ▒█▀▀▄ ▀█▀ ▒█▀▀▀█ ▒█▀▀█ ▒█▀▀▀█ ▒█▀▀█ ▒█▀▀▄ ", null, 0x9250FD, 'bold')
+                        room.sendAnnouncement("             ▒█░▒█ ▒█░ ░▀▀▀▄▄ ▒█░░░ ▒█░░▒█ ▒█▄▄▀ ▒█░▒█ ", null, 0x8466FD, 'bold')
+                        room.sendAnnouncement("             ▒█▄▄▀ ▄█▄ ▒█▄▄▄█ ▒█▄▄█ ▒█▄▄▄█ ▒█░▒█ ▒█▄▄▀ ", null, 0x7B73FD, 'bold');
+                        room.sendAnnouncement("             💬 Discord Link: ➡ https://discord.gg/ ⬅", null, 0xF6FF43, 'bold');
+                    } 
+                    else {
+                        room.sendAnnouncement("No tenés los requisitos necesarios", player.id, cor[indexCor.get("rojo")], "bold");
+                    }
+                    break;
+                case "mute":
+                    if (admins.indexOf(player.id) != -1) {
+                        if (words.length == 1) {
+                            room.sendAnnouncement("!mute @(jugador) tiempo (opcional)", player.id, cor[indexCor.get("plata")], "bold");
+                        }
+                        else if (words.length == 2) {
+                            if (getPlayerIDbyName(words[1].substring(1)) != -1) {
+                                playerIDMuted = getPlayerIDbyName(words[1].substring(1))
+                                dateMuted = addMinutes(new Date(), 2)
+                                muteTime.set(playerIDMuted, dateMuted)
+                                room.sendAnnouncement("Jugador muteado el tiempo indicado", player.id, cor[indexCor.get("verde")], "bold");
+                            }
+                        }
+                        else if (words.length == 3) {
+                            if (getPlayerIDbyName(words[1].substring(1)) != -1 && isNaN(words[2]) == false) {
+                                playerIDMuted = getPlayerIDbyName(words[1].substring(1))
+                                dateMuted = addMinutes(new Date(), parseInt(words[2]))
+                                muteTime.set(playerIDMuted, dateMuted)
+                                room.sendAnnouncement("Jugador muteado el tiempo indicado", player.id, cor[indexCor.get("verde")], "bold");
+                            } else {
+                                room.sendAnnouncement("Error en los argumentos", player.id, cor[indexCor.get("rojo")], "bold");
+                            }
+                        }
+                        else {
+                            room.sendAnnouncement("Demasiados argumentos", player.id, cor[indexCor.get("rojo")], "bold");
+                        }
+                    } 
+                    else {
+                        room.sendAnnouncement("No tenés los requisitos necesarios", player.id, cor[indexCor.get("rojo")], "bold");
+                    }
                     break;
                 default:
                     room.sendAnnouncement("Comando no existe", player.id, cor[indexCor.get("rojo")], "bold");
@@ -963,13 +1160,22 @@
             return false
         }
         else {
-            if (admins.indexOf(player.id) != -1) {
-                room.sendAnnouncement("[👮]" + player.name + ": " + message, null, cor[indexCor.get("purpura")], "normal");
+            if (muteTime.has(player.id) == true) {
+                dateMutedPlayer = muteTime.get(player.id)
+                dateNow = new Date()
+                if (dateMutedPlayer > dateNow) {
+                    room.sendAnnouncement("No podes mandar mensajes", player.id, cor[indexCor.get("rojo")], "bold");
+                    return false
+                }
             }
-            else if (Players_team[0].indexOf(player.id) != -1) {
+
+            if (admins.indexOf(player.id) != -1) {
+                room.sendAnnouncement("[👮]" + player.name + ": " + message, null, cor[indexCor.get("peachPuff")], "normal");
+            }
+            else if (player.team == 1) {
                 room.sendAnnouncement("[🔴]" + player.name + ": " + message, null, cor[indexCor.get("floralWhite")], "normal");
             }
-            else if (Players_team[1].indexOf(player.id) != -1) {
+            else if (player.team == 2) {
                 room.sendAnnouncement("[🔵]" + player.name + ": " + message, null, cor[indexCor.get("floralWhite")], "normal");
             }
             else {
@@ -991,11 +1197,14 @@
         } while (rand1 == rand);
         
         colors = camis[rand1].slice(2)
-        room.setTeamColors(1, camis[rand1][0], camis[rand1][1], colors)
-    }
-    
-    room.onPlayerBallKick = function(player) {
+        room.setTeamColors(2, camis[rand1][0], camis[rand1][1], colors)
 
+        room.sendAnnouncement("PARTIDA: " + camisIndex.get(rand) + " vs " + camisIndex.get(rand1), null, cor[indexCor.get("verde")], "bold")
+    }
+
+
+    room.onPlayerBallKick = function(player) {
+        
     }
     
     room.onTeamGoal = function(team) {
@@ -1009,7 +1218,7 @@
     room.onTeamVictory = function(scores) {
         room.stopGame()
         if(scores.red > scores.blue) {
-            room.sendAnnouncement("Congratulations to red for the victory")
+            room.sendAnnouncement("FELICITACIONES A " + camisIndex.get(rand) + " POR HABER GANADO", null, cor[indexCor.get("aliceBlue")], "bold")
             moveSpec(2)
             setTimeout(() => {
                 moveJug(2)
@@ -1017,7 +1226,7 @@
             
         }
         else {
-            room.sendAnnouncement("Congratulations to blue for the victory")
+            room.sendAnnouncement("FELICITACIONES A " + camisIndex.get(rand1) + " POR HABER GANADO", null, cor[indexCor.get("aliceBlue")], "bold")
             moveSpec(1)
             setTimeout(() => {
                 moveJug(1)
@@ -1034,19 +1243,3 @@
             admins.shift(changedPlayer.id);
         }   
     }
-
-    /*
-
-        ICONOS
-
-        🟦
-        🟥
-    */
-
-
-        
-        /*
-        FRASES GOL
-        
-        SE VIENE SILVA  
-        */
