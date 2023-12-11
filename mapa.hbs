@@ -18,8 +18,8 @@
     "traits" : {
         
         "goalPost" : { "radius" : 6, "invMass" : 0, "bCoef" : 0.5 },
-        "borders" : {"vis": true, "cGroup" : ["wall", "ball"], "cMask" : ["ball"], "color" : "FFFFFF", "bCoef" : 0.71},
-        "bordersInv" : {"vis": false, "cGroup" : ["wall", "ball"], "cMask" : ["ball"], "color" : "FFFFFF", "bCoef" : 0.98},
+        "borders" : {"vis": true, "cGroup" : ["wall", "ball"], "cMask" : ["ball"], "color" : "FFFFFF", "bCoef" : 0.67},
+        "bordersInv" : {"vis": false, "cGroup" : ["wall", "ball"], "cMask" : ["ball"], "color" : "FFFFFF", "bCoef" : 0.5},
         "kickOffBarrier" : { "vis" : true, "bCoef" : 0.1, "cGroup" : ["redKO", "blueKO"], "cMask" : ["red", "blue"], "color" : "FFFFFF"},
         "kickOffBlue" : { "vis" : true, "bCoef" : 0.1, "cGroup" : ["blueKO"], "cMask" : ["red", "blue"], "color" : "FFFFFF"},
         "kickOffRed" : { "vis" : true, "bCoef" : 0.1, "cGroup" : ["redKO"], "cMask" : ["red", "blue"], "color" : "FFFFFF"},
@@ -222,7 +222,7 @@
 
     "ballPhysics" : {
         "radius" : 6,
-        "invMass" : 1.5,
+        "invMass" : 1.56,
         "color" : "FFFF00",
         "bCoef " : 0.4,
         "damping" : 0.99
@@ -230,13 +230,12 @@
 
 
     "playerPhysics" : {
-        "bCoef" : 0.5,
+        "bCoef" : 0,
 	    "invMass" : 0.5,
-	    "damping" : 0.95,
 	    "acceleration" : 0.12,
 	    "kickingAcceleration" : 0.095,
 	    "kickingDamping" : 0.93,
-	    "kickStrength" : 4
+	    "kickStrength" : 4.52
     },
 
     
