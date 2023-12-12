@@ -2,6 +2,8 @@
         
         /* VARIABLES */
 
+        var player_auth = new Map();
+
         var Players_team = [[], [], []]
 
         var player_on_game = [[], []]
@@ -11,6 +13,7 @@
         const muteTime = new Map();
         
         var playerKickBall = [0, 0]
+        var playerKickName = ['', '']
         var teamKickBall = []
 
         var winStreak = 0
@@ -23,12 +26,13 @@
         // CONSTANTS
         const nam = "3 vs 3. Gana sigue";
         const maxPlayers = 10;
-        const public = false;
+        const public = true;
         const noPlayer = true;
 
         const scoreLimit = 3;
         const timeLimit = 3;
         
+
 
         const teamID = {Spectators: 0, Red: 1, Blue: 2};
         const idTeam = {0 : "spectators", 1 : "red", 2 : "blue"};
@@ -473,14 +477,14 @@
             "vertexes" : [
         
             /* Corners */
-                /* 0 */ {"x" : -550, "y" : -240, "trait" : "borders"}, //Top left
-                /* 1 */ {"x" : -550, "y" : 240, "trait" : "borders"}, //Bottom left
-                /* 2 */ {"x" : 550, "y" : -240, "trait" : "borders"}, //Top right
-                /* 3 */ {"x" : 550, "y" : 240, "trait" : "borders"}, //Bottom right
+                 /* 0 */ {"x" : -550, "y" : -240, "trait" : "borders"}, //Top left
+                 /* 1 */ {"x" : -550, "y" : 240, "trait" : "borders"}, //Bottom left
+                 /* 2 */ {"x" : 550, "y" : -240, "trait" : "borders"}, //Top right
+                 /* 3 */ {"x" : 550, "y" : 240, "trait" : "borders"}, //Bottom right
         
             /* Middle */
-                /* 4 */ {"x" : 0, "y" : 240, "trait" : "borders"}, //Middle bototm
-                /* 5 */ {"x" : 0, "y" : -240, "trait" : "borders"}, //Middle top
+                /* 4 */ {"x" : 0, "y" : 280, "trait" : "borders"}, //Middle bototm
+                /* 5 */ {"x" : 0, "y" : -280, "trait" : "borders"}, //Middle top
         
             /* Middle kickoff */
                 /* 6 */ {"x" : 0, "y" : 60, "trait" : "kickOffBarrier"},  //Middle little bottom
@@ -568,7 +572,10 @@
                 /* 57 */ {"x" : 556, "y" : -75, "trait" : "area"},
         
                 /* 58 */ {"x" : 556, "y" : 240, "trait" : "area"},
-                /* 59 */ {"x" : 556, "y" : 75, "trait" : "area"}
+                /* 59 */ {"x" : 556, "y" : 75, "trait" : "area"},
+        
+                /* 60 */{"x" : 0, "y" : 200, "trait" : "area"},
+                /* 61 */{"x" : 0, "y" : -200, "trait" : "area"}
             ],
         
             "segments" : [
@@ -664,7 +671,7 @@
         
             "ballPhysics" : {
                 "radius" : 6,
-                "invMass" : 1.56,
+                "invMass" : 1.5,
                 "color" : "FFFF00",
                 "bCoef " : 0.4,
                 "damping" : 0.99
@@ -672,13 +679,12 @@
         
         
             "playerPhysics" : {
-                "bCoef" : 0.5,
+                "bCoef" : 0,
                 "invMass" : 0.5,
-                "damping" : 0.95,
-                "acceleration" : 0.12,
+                "acceleration" : 0.11,
                 "kickingAcceleration" : 0.095,
                 "kickingDamping" : 0.93,
-                "kickStrength" : 4.52
+                "kickStrength" : 4.4
             },
         
             
@@ -732,11 +738,162 @@
             return time
         }
 
+        /* If it exists this ID, return the auth, else return -1*/
+        function getAuth(playerId) {
+            if (player_auth.has(playerId) == true) {
+                return player_auth.get(playerId)
+            }
+            return -1
+        }
+
+        function getStats(playerAuth, playerID) {
+            if (authExists(playerAuth) == true) {
+                return JSON.parse(localStorage.getItem(playerAuth))
+            }
+            else {
+                return -1
+            }
+        }
+        /* OCURRENCIAS TIENE QUE TENER:
+
+            let ocurrencias = {
+                nombre: playerName,
+                goles: 0,
+                asistencias: 0,
+                partidos: 0,
+                partidos_ganados: 0,
+                partidos_perdidos: 0
+            }
+
+            OCURRENCIAS TIENE QUE TENER LAS MISMAS LLAVES QUE EN EL LOCAL STORAGE
+        */
+        function setStats(playerAuth, ocurrencias) {
+            if (authExists(playerAuth) == true) {
+                console.log("Nueva persona en la base de datos")
+                claves = Object.keys(ocurrencias)
+                player_information = getStats(playerAuth)
+                if (player_information == -1) {
+                    return
+                }
+                for (let i = 0; i < claves.length; i++) {
+                    console.log("Nueva persona en la base de datos")
+                    player_information[claves[i]] = player_information[claves[i]] + ocurrencias[claves[i]]
+                }
+                localStorage.setItem(playerAuth, JSON.stringify(player_information))
+            }
+            else {
+                room.sendAnnouncement("Todavía no estás registrado en las stats", player.id, cor[indexCor.get("rojo")], "bold");
+            }
+        }
+
+        function getGameInformation(teamGanador) {
+            player_online = room.getPlayerList().length - player_afk.size
+            player_playing = Players_team[1].length + Players_team[2].length
+            
+            let personas_ganadoras = Players_team[teamGanador]
+            let personas_perdieron
+            if (teamGanador == 1) {
+                personas_perdieron = Players_team[2]
+            } else {
+                personas_perdieron = Players_team[1]
+            }
+
+            let player_playing_information = new Object()
+            player_playing_information.goles = countArray2D(golesPartido, personas_ganadoras[0], 4)
+            player_playing_information.asistencias = countArray2D(golesPartido, personas_ganadoras[0], 5)
+            player_playing_information.partidos = 1
+            player_playing_information.partidos_ganados = 1
+            player_playing_information.partidos_perdidos = 0
+            setStats(getAuth(personas_ganadoras[0]), player_playing_information)
+            
+
+            if (player_online > 6 && player_playing == 6) {
+                let personas_ganadoras = Players_team[teamGanador]
+                let personas_perdieron
+                if (teamGanador == 1) {
+                    personas_perdieron = Players_team[2]
+                } else {
+                    personas_perdieron = Players_team[1]
+                }
+
+                for (let i = 0; i < 3; i++) {
+                    let player_playing_information = new Object()
+                    player_playing_information.goles = countArray2D(golesPartido, personas_ganadoras[i], 4)
+                    player_playing_information.asistencias = countArray2D(golesPartido, personas_ganadoras[i], 5)
+                    player_playing_information.partidos = 1
+                    player_playing_information.partidos_ganados = 1
+                    player_playing_information.partidos_perdidos = 0
+                    setStats(getAuth(personas_ganadoras[i]), player_playing_information)
+                    console.log("La información de los jugadores es: ")
+                    console.log(player_playing_information)
+                    console.log(getAuth(personas_ganadoras[0]))
+            
+                }
+                
+                for (let i = 0; i < 3; i++) {
+                    let player_playing_information = new Object()
+                    player_playing_information.goles = countArray2D(golesPartido, personas_perdieron[i], 4)
+                    player_playing_information.asistencias = countArray2D(golesPartido, personas_perdieron[i], 5)
+                    player_playing_information.partidos = 1
+                    player_playing_information.partidos_ganados = 0
+                    player_playing_information.partidos_perdidos = 1
+                    setStats(getAuth(personas_perdieron[i]), player_playing_information)
+                    console.log("La información de los jugadores es: ")
+                    console.log(player_playing_information)
+                    console.log(getAuth(personas_ganadoras[0]))
+                }
+            }
+            
+        }
+
+        function countArray(array, strToLook) {
+            n = 0;
+            for(let i = 0; i < array.length; i++) {
+                if (array[i] == strToLook) {
+                    n += 1
+                }
+            }
+            return n
+        }
+
+        function countArray2D(array, toLook, column) {
+            n = 0;
+            for(let i = 0; i < array.length; i++) {
+                if (array[i][column] == toLook) {
+                    n += 1
+                }
+            }
+            return n
+        }
+
+        function authExists(playerAuth) {
+            if (localStorage.getItem(playerAuth) !== null) {
+                return true
+            }
+            return false
+        }
+
+        function createPlayerStats(playerAuth, playerName) {
+            if (authExists(playerAuth) == true) {
+                return
+            } 
+
+            let player_information = {
+                nombre: playerName,
+                goles: 0,
+                asistencias: 0,
+                partidos: 0,
+                partidos_ganados: 0,
+                partidos_perdidos: 0
+            }
+            localStorage.setItem(playerAuth, JSON.stringify(player_information))
+        }
+
         /* Return -1 if there's no matching id with this name*/
         function getPlayerIDbyName(name) {
             let playersList = room.getPlayerList()
             for (let i = 0; i < playersList.length; i++) {
-                console.log(playersList[i].name.replace(/ /g, '_'))
+                //console.log(playersList[i].name.replace(/ /g, '_'))
                 nombreJugador = playersList[i].name.replace(/ /g, '_')
                 if (nombreJugador == name) {
                     return playersList[i].id
@@ -860,11 +1017,11 @@
             else if (player_online == player_playing) { return} //Estàn jugando todos los jugadores
             else { //La única opción que queda es que haya gente esperando por jugar en equipos con falta de jugadores
 
-                console.log("La cant de jugadores online son: " + player_online)
-                console.log("La cant de jugadores jugando son: " + player_playing)
-                console.log("La cant de jugador en team 0:" + Players_team[0].length)
-                console.log("La cant de jugador en team 1:" + Players_team[1].length)
-                console.log("La cant de jugador en team 2:" + Players_team[2].length)
+                //console.log("La cant de jugadores online son: " + player_online)
+                //console.log("La cant de jugadores jugando son: " + player_playing)
+                //console.log("La cant de jugador en team 0:" + Players_team[0].length)
+                //console.log("La cant de jugador en team 1:" + Players_team[1].length)
+                //console.log("La cant de jugador en team 2:" + Players_team[2].length)
 
                 if (Players_team[1].length >= 3 && Players_team[2].length >= 3) {
                     return
@@ -947,7 +1104,7 @@
         }
 
         function updateAFK(player) {
-            console.log(player.id)
+            //console.log(player.id)
             //Si no está jugando
             if (Players_team[0].indexOf(player.id) != -1 ) {
                 if (player_afk.has(player.id) == true) {
@@ -970,6 +1127,11 @@
         }
 
         room.onPlayerJoin = function(player) {
+            player_auth.set(player.id, player.auth.toString())
+            createPlayerStats(player.auth, player.name)
+
+
+
             updateAdmins();
             updateTeamsEntrar(player.team, player.id);
             enough_players()
@@ -1005,10 +1167,24 @@
             if(message.charAt(0) == '!') {
                 words = message.split(" ")
                 switch (words[0].substring(1)) {
+                    case "clearStatsHistory":
+                        localStorage.clear();
+                        break;
+                    case "stats":
+                        room.sendAnnouncement(player.name + " HA CONSULTADO SUS STATS", null, cor[indexCor.get("naranja")], "bold");  
+                        
+                        let stats = getStats(getAuth(player.id))
+                        
+                        room.sendAnnouncement("Goles: " + stats["goles"], null, cor[indexCor.get("naranja")], "bold");  
+                        room.sendAnnouncement("Asistencias: " + stats["asistencias"], null, cor[indexCor.get("naranja")], "bold");  
+                        room.sendAnnouncement("Partidos: " + stats["partidos"], null, cor[indexCor.get("naranja")], "bold");  
+                        room.sendAnnouncement("Partidos ganados: " + stats["partidos_ganados"], null, cor[indexCor.get("naranja")], "bold");  
+                        room.sendAnnouncement("Partidos perdidos: " + stats["partidos_perdidos"], null, cor[indexCor.get("naranja")], "bold");  
+                        break;
                     /* Si hay más de una persona con el mismo nombre no funciona correctamente, al no poder distiguir su nombre entre ellos*/
                     case "msg":
                         if (words.length == 1) {
-                            room.sendAnnouncement("!msg @(nombre de la persona) (texto para quien dirigirlo) ", words[-1], cor[indexCor.get("plata")], "bold");  
+                            room.sendAnnouncement("!msg @(nombre de la persona) (texto para quien dirigirlo) ", player.id, cor[indexCor.get("plata")], "bold");  
                         }
                         else if (words.length > 2) {
                             playerID = getPlayerIDbyName(words[1].substring(1))
@@ -1035,7 +1211,7 @@
                             room.sendAnnouncement("!t mensaje", words[-1], cor[indexCor.get("plata")], "bold");  
                         } else {
                             for (let i = 0; i < Players_team[player.team].length; i++) {
-                                console.log(words.slice(1).join(' '))
+                                //console.log(words.slice(1).join(' '))
                                 room.sendAnnouncement("[🔴]"+ words.slice(1).join(' '), Players_team[player.team][i], cor[indexCor.get("plata")], "normal");  
                             }   
                         }
@@ -1068,12 +1244,12 @@
                                 room.sendAnnouncement("    " + room.getPlayer(Players_team[2][i]).name, player.id, cor[indexCor.get("blanchedAlmond")], "bold");
                             }
                         }
-                        console.log(Players_team)
+                        //console.log(Players_team)
                         break;
                     case "admins":
                         room.sendAnnouncement("Los admins en el host son: ", player.id, cor[indexCor.get("plata")], "bold");
                         for (let i = 0; i < admins.length; i++) {
-                            room.sendAnnouncement("    " + room.getPlayer(admins).name, player.id, cor[indexCor.get("blanchedAlmond")], "bold");
+                            room.sendAnnouncement("    " + room.getPlayer(admins[i]).name, player.id, cor[indexCor.get("blanchedAlmond")], "bold");
                         }
                         break;
                     case "password":
@@ -1098,9 +1274,6 @@
                     case "bb":
                         room.kickPlayer(player.id, "Nv, espero que hayas disfrutado del server", false) //Echar a la persona
                         updateAFKsalir(player)
-                        break;
-                    case "stats":
-                        room.sendAnnouncement("Acá se muestran las stats propias", player.id);
                         break;
                     case "stop":
                         if (admins.indexOf(player.id) != -1) {
@@ -1192,11 +1365,13 @@
                                     team_sel = parseInt(words[2])
                                     colors = camis[team_sel].slice(2)
                                     room.setTeamColors(teamColorSeleccionado, camis[team_sel][0], camis[team_sel][1], colors)
-                                    console.log(camis)
+                                    //console.log(camis)
                                 }
-                                else if (isNumeric(words[1]) == true && is_letters_and_spaces(words[2]) == true) {
+                                else if (isNumeric(words[1]) == true && is_letters_and_spaces(words.slice(2).join(' ')) == true) {
+                                    //console.log("Se paso a la parte donde hay clubes con más de 1 palabra")
                                     teamColorSeleccionado = parseInt(words[1])
-                                    if (indexCamis.has(words[2]) == true) {
+                                    if (indexCamis.has(words.slice(2).join(' ')) == true) {
+                                        //console.log("Se paso el if de este sistio")
                                         team_sel = indexCamis.get(words.slice(2).join(' '))
                                         colors = camis[team_sel].slice(2)
                                         room.setTeamColors(teamColorSeleccionado, camis[team_sel][0], camis[team_sel][1], colors)
@@ -1208,7 +1383,6 @@
                                 else {
                                     room.sendAnnouncement("The arguments must be numbers", player.id, cor[indexCor.get("rojo")], "bold");
                                 }
-                                room.sendAnnouncement("Se aplica la camiseta seleccionada", player.id);
                             } else if (words.length >= 5) {
                                 room.sendAnnouncement("Se aplica la camiseta seleccionada", player.id);
                             }
@@ -1330,12 +1504,14 @@
             playerKickBall[1] = playerKickBall[0]
             playerKickBall[0] = player.id
 
+            playerKickName[1] = playerKickName[0]
+            playerKickName[0] = player.name
+
             teamKickBall[1] = teamKickBall[0]
             teamKickBall[0] = player.team
         }
         
         room.onTeamGoal = function(team) {
-            
             tiempoGol = convertMilisecondsToMinutes(substrctMinutes(new Date(), tiempoEmpezadoJuego))
             str = tiempoGol[0].toString() + ':' + tiempoGol[1].toString()
             if (teamKickBall[0] == team) {
@@ -1354,27 +1530,25 @@
             
             golesPartido.push(new Array())
 
-            asistidor = playerKickBall.slice(1,2)
-            console.log(asistidor)
-            console.log(typeof(asistidor[0]))
-            console.log("El asistidor es: " + asistidor)
-
-            playerGolNamePrueba = playerKickBall.slice(0,1)
-            playerGolName = room.getPlayer(playerGolNamePrueba).name
             if (teamKickBall[0] == teamKickBall[1]) {
-                asisPlayerName = room.getPlayer(asistidor[0]).name
 
-                golesPartido[golesPartido.length - 1].push(playerGolName)
-                golesPartido[golesPartido.length - 1].push(asisPlayerName)
+                golesPartido[golesPartido.length - 1].push(playerKickName[0])
+                golesPartido[golesPartido.length - 1].push(playerKickName[1])
                 golesPartido[golesPartido.length - 1].push(str)
+                golesPartido[golesPartido.length - 1].push(getAuth(playerKickBall[0]))
+                golesPartido[golesPartido.length - 1].push(playerKickBall[0])
+                golesPartido[golesPartido.length - 1].push(playerKickBall[1])
                 golesPartido[golesPartido.length - 1].push(team)
             } else {
-                asisPlayerName = ''
-                golesPartido[golesPartido.length - 1].push(playerGolName)
-                golesPartido[golesPartido.length - 1].push(asisPlayerName)
+                golesPartido[golesPartido.length - 1].push(playerKickName[0])
+                golesPartido[golesPartido.length - 1].push('')
                 golesPartido[golesPartido.length - 1].push(str)
+                golesPartido[golesPartido.length - 1].push(getAuth(playerKickBall[0]))
+                golesPartido[golesPartido.length - 1].push(playerKickBall[0])
+                golesPartido[golesPartido.length - 1].push(null)
                 golesPartido[golesPartido.length - 1].push(team)
             }
+            console.log("Los goles del partido son: ")
             console.log(golesPartido)
             playerKickBall[0] = 0
             playerKickBall[1] = 0
@@ -1384,6 +1558,16 @@
         }
         
         room.onTeamVictory = function(scores) {
+            //Se actualizan las stats
+            let teamGanador = 0
+            if (scores.red > scores.blue) {
+                teamGanador = 1
+            } else {
+                teamGanador = 2
+            }
+
+            player = getGameInformation(teamGanador)
+
             //Se muestran los goles del partido
             room.sendAnnouncement("Los goles del partido son presentados por Monomel:", null, cor[indexCor.get("aliceBlue")], "bold")
                 for (let i = 0; i < golesPartido.length; i++) {
@@ -1407,12 +1591,7 @@
                 }
                 room.stopGame()
             
-            let teamGanador = 0
-            if (scores.red > scores.blue) {
-                teamGanador = 1
-            } else {
-                teamGanador = 2
-            }
+            
             if(scores.red > scores.blue) {
                 room.sendAnnouncement("FELICITACIONES A " + camisIndex.get(rand) + " POR HABER GANADO", null, cor[indexCor.get("aliceBlue")], "bold")
                 moveSpec(2)
