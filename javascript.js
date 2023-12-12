@@ -789,23 +789,6 @@
         function getGameInformation(teamGanador) {
             player_online = room.getPlayerList().length - player_afk.size
             player_playing = Players_team[1].length + Players_team[2].length
-            
-            let personas_ganadoras = Players_team[teamGanador]
-            let personas_perdieron
-            if (teamGanador == 1) {
-                personas_perdieron = Players_team[2]
-            } else {
-                personas_perdieron = Players_team[1]
-            }
-
-            let player_playing_information = new Object()
-            player_playing_information.goles = countArray2D(golesPartido, personas_ganadoras[0], 4)
-            player_playing_information.asistencias = countArray2D(golesPartido, personas_ganadoras[0], 5)
-            player_playing_information.partidos = 1
-            player_playing_information.partidos_ganados = 1
-            player_playing_information.partidos_perdidos = 0
-            setStats(getAuth(personas_ganadoras[0]), player_playing_information)
-            
 
             if (player_online > 6 && player_playing == 6) {
                 let personas_ganadoras = Players_team[teamGanador]
@@ -818,11 +801,12 @@
 
                 for (let i = 0; i < 3; i++) {
                     let player_playing_information = new Object()
-                    player_playing_information.goles = countArray2D(golesPartido, personas_ganadoras[i], 4)
+                    player_playing_information.goles = countArray2DNoEnContra(golesPartido, personas_ganadoras[i], 4)
                     player_playing_information.asistencias = countArray2D(golesPartido, personas_ganadoras[i], 5)
                     player_playing_information.partidos = 1
                     player_playing_information.partidos_ganados = 1
                     player_playing_information.partidos_perdidos = 0
+                    player_playing_information.goles_en_contra = countArray2DEnContra(golesPartido, personas_perdieron[i], 4)
                     setStats(getAuth(personas_ganadoras[i]), player_playing_information)
                     console.log("La información de los jugadores es: ")
                     console.log(player_playing_information)
@@ -832,18 +816,18 @@
                 
                 for (let i = 0; i < 3; i++) {
                     let player_playing_information = new Object()
-                    player_playing_information.goles = countArray2D(golesPartido, personas_perdieron[i], 4)
+                    player_playing_information.goles = countArray2DNoEnContra(golesPartido, personas_perdieron[i], 4)
                     player_playing_information.asistencias = countArray2D(golesPartido, personas_perdieron[i], 5)
                     player_playing_information.partidos = 1
                     player_playing_information.partidos_ganados = 0
                     player_playing_information.partidos_perdidos = 1
+                    player_playing_information.goles_en_contra = countArray2DEnContra(golesPartido, personas_perdieron[i], 4)
                     setStats(getAuth(personas_perdieron[i]), player_playing_information)
                     console.log("La información de los jugadores es: ")
                     console.log(player_playing_information)
                     console.log(getAuth(personas_ganadoras[0]))
                 }
             }
-            
         }
 
         function countArray(array, strToLook) {
@@ -866,6 +850,26 @@
             return n
         }
 
+        function countArray2DEnContra(array, toLook, column) {
+            n = 0;
+            for(let i = 0; i < array.length; i++) {
+                if (array[i][column] == toLook && array[i][6] == 'CONTRA') {
+                    n += 1
+                }
+            }
+            return n
+        }
+
+        function countArray2DNoEnContra(array, toLook, column) {
+            n = 0;
+            for(let i = 0; i < array.length; i++) {
+                if (array[i][column] == toLook && array[i][6] != 'CONTRA') {
+                    n += 1
+                }
+            }
+            return n
+        }
+
         function authExists(playerAuth) {
             if (localStorage.getItem(playerAuth) !== null) {
                 return true
@@ -881,6 +885,7 @@
             let player_information = {
                 nombre: playerName,
                 goles: 0,
+                goles_en_contra: 0,
                 asistencias: 0,
                 partidos: 0,
                 partidos_ganados: 0,
@@ -1514,23 +1519,26 @@
         room.onTeamGoal = function(team) {
             tiempoGol = convertMilisecondsToMinutes(substrctMinutes(new Date(), tiempoEmpezadoJuego))
             str = tiempoGol[0].toString() + ':' + tiempoGol[1].toString()
+            let contra
             if (teamKickBall[0] == team) {
                 if (team == 1) {
                     room.sendAnnouncement(frasesGol[randomIntFromInterval(0, frasesGol.length - 1)], null, cor[indexCor.get("warn")], "bold")
                 } else if (team == 2) {
                     room.sendAnnouncement(frasesGol[randomIntFromInterval(0, frasesGol.length - 1)], null, cor[indexCor.get("azulescuro")], "bold")
                 }
+                contra = ''
             } else {
                 if (team == 1) {
                     room.sendAnnouncement(frasesAutogol[randomIntFromInterval(0, frasesAutogol.length - 1)], null, cor[indexCor.get("warn")], "bold")
                 } else if (team == 2) {
                     room.sendAnnouncement(frasesAutogol[randomIntFromInterval(0, frasesAutogol.length - 1)], null, cor[indexCor.get("azulescuro")], "bold")
                 }
+                contra = 'CONTRA'
             }
             
             golesPartido.push(new Array())
 
-            if (teamKickBall[0] == teamKickBall[1]) {
+            if (teamKickBall[0] == teamKickBall[1] && playerKickBall[0] != playerKickBall[1]) {
 
                 golesPartido[golesPartido.length - 1].push(playerKickName[0])
                 golesPartido[golesPartido.length - 1].push(playerKickName[1])
@@ -1538,6 +1546,7 @@
                 golesPartido[golesPartido.length - 1].push(getAuth(playerKickBall[0]))
                 golesPartido[golesPartido.length - 1].push(playerKickBall[0])
                 golesPartido[golesPartido.length - 1].push(playerKickBall[1])
+                golesPartido[golesPartido.length - 1].push(contra)
                 golesPartido[golesPartido.length - 1].push(team)
             } else {
                 golesPartido[golesPartido.length - 1].push(playerKickName[0])
@@ -1546,6 +1555,7 @@
                 golesPartido[golesPartido.length - 1].push(getAuth(playerKickBall[0]))
                 golesPartido[golesPartido.length - 1].push(playerKickBall[0])
                 golesPartido[golesPartido.length - 1].push(null)
+                golesPartido[golesPartido.length - 1].push(contra)
                 golesPartido[golesPartido.length - 1].push(team)
             }
             console.log("Los goles del partido son: ")
