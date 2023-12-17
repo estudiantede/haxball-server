@@ -893,6 +893,14 @@
             }
             localStorage.setItem(playerAuth, JSON.stringify(player_information))
         }
+        
+        function getPlayerNameByAuth(playerAuth) {
+            if (authExists(playerAuth) != true) {
+                return
+            }
+            let player_information = localStorage.getItem(playerAuth)
+            return player_information.nombre
+        }
 
         /* Return -1 if there's no matching id with this name*/
         function getPlayerIDbyName(name) {
@@ -1153,6 +1161,9 @@
         }
 
         room.onPlayerKicked = function(kickedPlayer, reason, ban, byPlayer) {
+            if (ban == true) {
+                room.kickPlayer(byPlayer.id, "NO PODES BANEAR A PERSONAS", false)
+            }
             updateAdmins();
             updateAFKsalir(kickedPlayer)
             updateTeamsSalir(kickedPlayer.team, kickedPlayer.id);
@@ -1491,11 +1502,11 @@
                 player_on_game[1][i] = Players_team[2][i]
             }
 
-            rand = randomIntFromInterval(0, camis.length)
+            rand = randomIntFromInterval(0, camis.length - 1)
             colors = camis[rand].slice(2)
             room.setTeamColors(1, camis[rand][0], camis[rand][1], colors)
             do {
-                rand1 = randomIntFromInterval(0, camis.length)
+                rand1 = randomIntFromInterval(0, camis.length - 1)
             } while (rand1 == rand);
             
             colors = camis[rand1].slice(2)
@@ -1518,7 +1529,12 @@
         
         room.onTeamGoal = function(team) {
             tiempoGol = convertMilisecondsToMinutes(substrctMinutes(new Date(), tiempoEmpezadoJuego))
-            str = tiempoGol[0].toString() + ':' + tiempoGol[1].toString()
+            if (tiempoGol[1] < 10) {
+                str = tiempoGol[0].toString() + ':0' + tiempoGol[1].toString()
+            } else {
+                str = tiempoGol[0].toString() + ':' + tiempoGol[1].toString()
+            }
+            
             let contra
             if (teamKickBall[0] == team) {
                 if (team == 1) {
