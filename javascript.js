@@ -738,6 +738,17 @@
             return time
         }
 
+        function convertSecondsToMinutes(seconds) {
+            if (seconds < 0) {
+            return -1
+            }
+            let time = [0,0]
+            time[0] = Math.floor(seconds / 60)
+            time[1] = Math.floor(seconds - time[0] * 60)
+            
+            return time
+        }
+
         /* If it exists this ID, return the auth, else return -1*/
         function getAuth(playerId) {
             if (player_auth.has(playerId) == true) {
@@ -1528,7 +1539,8 @@
         }
         
         room.onTeamGoal = function(team) {
-            tiempoGol = convertMilisecondsToMinutes(substrctMinutes(new Date(), tiempoEmpezadoJuego))
+            
+            tiempoGol = convertSecondsToMinutes(room.getScores().time)
             if (tiempoGol[1] < 10) {
                 str = tiempoGol[0].toString() + ':0' + tiempoGol[1].toString()
             } else {
